@@ -9,7 +9,7 @@ use XForm\View\Components\Form\Checkbox;
 use XForm\View\Components\Form\Disabled;
 use XForm\View\Components\Form\Input;
 use XForm\View\Components\Form\Label;
-use XForm\View\Components\Form\RadioButton;
+use XForm\View\Components\Form\Radio;
 use XForm\View\Components\Form\Select;
 use XForm\View\Components\Form\Textarea;
 
