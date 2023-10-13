@@ -49,7 +49,7 @@ class Select extends FormElement
                 <select
                     {{
                         $attributes->class([
-                                'form-control shadow-none',
+                                'form-select text-capitalize shadow-none',
                                 'is-invalid' => $errors->has($rule)
                             ])
                             ->merge([
