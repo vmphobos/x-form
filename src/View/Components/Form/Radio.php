@@ -19,6 +19,7 @@ class RadioButton extends FormElement
         public ?string $rule = null,
         public ?string $tooltip = null,
         public ?bool $required = false,
+        public ?bool $horizontal = false,
         public ?bool $dirty = false,
     ) {
         if($this->dirty) {
@@ -46,8 +47,8 @@ class RadioButton extends FormElement
             
                 <div
                     @class([
-                        'space-y-2',
-                        'space-x-2' => count($list) < 4
+                        'space-y-2' => !$horizontal,
+                        'space-x-2' => $horizontal
                     ])
                 >
                     @foreach($list as $title => $id)
