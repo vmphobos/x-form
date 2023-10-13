@@ -25,7 +25,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.checkbox', Checkbox::class);
         Blade::component('form.input', Input::class);
         Blade::component('form.label', Label::class);
-        Blade::component('form.radio-button', RadioButton::class);
+        Blade::component('form.radio', Radio::class);
         Blade::component('form.select', Select::class);
         Blade::component('form.textarea', Textarea::class);
         Blade::component('form.disabled', Disabled::class);
