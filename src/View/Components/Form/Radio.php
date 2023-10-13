@@ -5,7 +5,7 @@ namespace XForm\View\Components\Form;
 use Closure;
 use Illuminate\Contracts\View\View;
 
-class RadioButton extends FormElement
+class Radio extends FormElement
 {
     public string $uuid;
 
