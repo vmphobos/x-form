@@ -35,20 +35,20 @@ class Input extends FormElement
     {
         return <<<'HTML'
             @if($floating)
-                <div class="form-floating">
+                <div class="{{ config('x-form.floating') }}">
             @endif
-            
+
             @if(!$floating && $label)
                 <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                     :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                 />
             @endif
-            
+
             <input
                 {{
                     $attributes->class([
-                            'form-control shadow-none',
-                            'is-invalid' => $errors->has($rule)
+                            config('x-form.input'),
+                            config('x-form.invalid') => $errors->has($rule)
                         ])
                         ->merge([
                             'id' => $uuid,
@@ -58,25 +58,25 @@ class Input extends FormElement
                             'wire:key' => str($name)->slug(),
                         ])
                 }}
-            
+
                 @if($modifier)
-                    wire:dirty.class="border-warning"
+                    wire:dirty.class="{{ config('x-form.border') }}"
                 @endif
-            
+
                 @if($tooltip && !$label)
                     data-bs-toggle="tooltip" title={{ $tooltip }}
                 @endif
             />
-            
+
             @if($floating && $label)
                 <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                     :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                 />
                 </div>
             @endif
-            
+
             @error($rule)
-                @danger({{ $message }})
+                <div class="{{ config('x-form.error') }}">{{ $message }}</div>
             @enderror
         HTML;
     }

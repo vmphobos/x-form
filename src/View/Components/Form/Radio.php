@@ -40,29 +40,29 @@ class Radio extends FormElement
                         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                     />
                 @endif
-            
+
                 @error($rule)
-                    @danger({{ $message }})
+                    <div class="{{ config('x-form.error') }}">{{ $message }}</div>
                 @enderror
-            
+
                 <div
                     @class([
-                        'space-y-2' => !$horizontal,
-                        'space-x-2' => $horizontal
+                        config('x-form.check.vertical') => !$horizontal,
+                        config('x-form.check.horizontal') => $horizontal
                     ])
                 >
                     @foreach($list as $title => $id)
                         <div
                             @class([
-                                'form-check',
-                                'form-check-inline' => count($list) < 4
+                                config('x-form.check.div'),
+                                config('x-form.check.inline') => $horizontal
                             ])
                         >
                             <input type="radio" value="{{ $id }}"
                                 {{
                                     $attributes->class([
-                                        'form-check-input shadow-none',
-                                        'is-invalid' => $errors->has($rule)
+                                        config('x-form.check.input'),
+                                        config('x-form.invalid') => $errors->has($rule)
                                     ])
                                     ->merge([
                                         'id' => str($name)->slug() . '_' . $id,
@@ -71,18 +71,17 @@ class Radio extends FormElement
                                         'wire:key' => str($name)->slug() . '_' . $id,
                                     ])
                                 }}
-            
+
                                 @if($modifier)
-                                    wire:dirty.class="border-warning"
+                                    wire:dirty.class="{{ config('x-form.border') }}"
                                 @endif
                             >
-            
-                            <label class="form-check-label text-capitalize" for="{{ str($name)->slug() . '_' . $id }}">{{ $title }}</label>
+
+                            <label class="{{ config('x-form.check.label') }}" for="{{ str($name)->slug() . '_' . $id }}">{{ $title }}</label>
                         </div>
                     @endforeach
                 </div>
             </div>
         HTML;
-
     }
 }

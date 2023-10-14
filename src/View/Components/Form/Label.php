@@ -27,10 +27,10 @@ class Label extends Component
         return <<<'HTML'
             <label for="{{ $for }}"
                 @if($modifier && $model) wire:target="{{ $model }}" @endif
-            
+
                 @class([
-                    'form-label fw-bold text-capitalize',
-                    'required' => $required
+                    config('x-form.label'),
+                    config('x-form.required') => $required
                 ])
                 @if($tooltip)
                     data-bs-toggle="tooltip"title="{{ $tooltip }}"
@@ -41,14 +41,13 @@ class Label extends Component
                        @if($modifier && $model) wire:loading.remove wire:target="{{ $model }}" @endif
                     ></i>
                 @endif
-            
+
                 @if($modifier && $model)
-                    <span wire:loading wire:target="{{ $model }}" class="spinner-border spinner-border-sm"></span>
+                    <span wire:loading wire:target="{{ $model }}" class="{{ config('x-form.spinner') }}"></span>
                 @endif
-            
+
                 {!! $label !!}
             </label>
         HTML;
-
     }
 }

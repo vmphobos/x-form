@@ -24,14 +24,14 @@ class Disabled extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            @if($floating) <div class="form-floating"> @endif
+            @if($floating) <div class="{{ config('x-form.floating') }}"> @endif
 
             @if(!$floating && $label)
                 <x-form.label label="{!! $label !!}" :icon="$icon" />
             @endif
-            
-            <div class="form-control form-control-alt text-capitalize">{{ $value ?: '-' }}</div>
-            
+
+            <div class="{{ config('x-form.disabled.class') }}" style="{{ config('x-form.disabled.style') }}">{{ $value ?: '-' }}</div>
+
             @if($floating && $label)
                     <x-form.label label="{!! $label !!}" :icon="$icon" />
                 </div>

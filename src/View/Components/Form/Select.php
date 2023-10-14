@@ -37,20 +37,20 @@ class Select extends FormElement
         return <<<'HTML'
             <div wire:key="{{ $uuid }}">
                 @if($floating)
-                    <div class="form-floating">
+                    <div class="{{ config('x-form.floating') }}">
                 @endif
-            
+
                 @if(!$floating && $label)
                     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                     />
                 @endif
-            
+
                 <select
                     {{
                         $attributes->class([
-                                'form-select text-capitalize shadow-none',
-                                'is-invalid' => $errors->has($rule)
+                                config('x-form.select'),
+                                config('x-form.invalid') => $errors->has($rule)
                             ])
                             ->merge([
                                 'id' => $uuid,
@@ -59,33 +59,32 @@ class Select extends FormElement
                                 'wire:key' => str($name)->slug(),
                             ])
                     }}
-            
+
                     @if($modifier)
-                        wire:dirty.class="border-warning"
+                        wire:dirty.class="{{ config('x-form.border') }}"
                     @endif
-            
+
                     @if($tooltip && !$label)
                         data-bs-toggle="tooltip" title={{ $tooltip }}
                     @endif
                 >
                     <option>{{ $attributes->get('placeholder') }}</option>
-            
+
                     @foreach($list as $title => $id)
                         <option value="{{ $id }}" class="text-capitalize">{{ $title }}</option>
                     @endforeach
                 </select>
-            
+
                 @if($floating && $label)
                     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                     />
                 @endif
-            
+
                 @error($rule)
-                    @danger({{ $message }})
+                    <div class="{{ config('x-form.error') }}">{{ $message }}</div>
                 @enderror
             </div>
         HTML;
-
     }
 }

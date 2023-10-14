@@ -36,20 +36,20 @@ class Textarea extends FormElement
         return <<<'HTML'
             <div wire:key="{{ $uuid }}">
                 @if($floating)
-                    <div class="form-floating">
+                    <div class="{{ config('x-form.floating') }}">
                 @endif
-            
+
                 @if(!$floating && $label)
                     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                     />
                 @endif
-            
+
                 <textarea
                     {{
                        $attributes->class([
-                               'form-control shadow-none',
-                               'is-invalid' => $errors->has($rule)
+                               config('x-form.textarea'),
+                               config('x-form.invalid') => $errors->has($rule)
                            ])
                            ->merge([
                                'id' => $uuid,
@@ -59,28 +59,27 @@ class Textarea extends FormElement
                                'rows' => $rows,
                            ])
                     }}
-            
+
                     @if($modifier)
-                        wire:dirty.class="border-warning"
+                        wire:dirty.class="{{ config('x-form.border') }}"
                     @endif
-            
+
                     @if($tooltip && !$label)
                         data-bs-toggle="tooltip" title={{ $tooltip }}
                     @endif
                 ></textarea>
-            
+
                 @if($floating && $label)
                     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
                         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
                     />
                     </div>
                 @endif
-            
+
                 @error($rule)
-                    @danger({{ $message }})
+                    <div class="{{ config('x-form.error') }}">{{ $message }}</div>
                 @enderror
             </div>
         HTML;
-
     }
 }
