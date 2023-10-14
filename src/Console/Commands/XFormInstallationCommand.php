@@ -14,10 +14,11 @@ class XFormInstallationCommand extends Command
     public function handle()
     {
         $this->info("Installing x-Form...");
-        
+
         $livewire = Process::tty()->run('composer require livewire/livewire');
         $this->info($livewire->output());
 
         $this->info('Successfully installed!');
     }
 }
+
