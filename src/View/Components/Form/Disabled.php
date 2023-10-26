@@ -30,7 +30,7 @@ class Disabled extends Component
                 <x-form.label label="{!! $label !!}" :icon="$icon" />
             @endif
 
-            <div class="{{ config('x-form.disabled.class') }}" style="{{ config('x-form.disabled.style') }}">{{ $value ?: '-' }}</div>
+            <div {{ $attributes->class([config('x-form.disabled.class')]) }} style="{{ config('x-form.disabled.style') }}">{{ $value ?: '-' }}</div>
 
             @if($floating && $label)
                     <x-form.label label="{!! $label !!}" :icon="$icon" />
