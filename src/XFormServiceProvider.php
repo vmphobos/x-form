@@ -30,7 +30,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.select', Select::class);
         Blade::component('form.textarea', Textarea::class);
         Blade::component('form.disabled', Disabled::class);
-        Blade::component('form.scripts', JsScripts::class);
+        Blade::component('form.scripts', Scripts::class);
 
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
