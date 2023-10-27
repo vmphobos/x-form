@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Disabled extends Component
+class Scripts extends Component
 {
     public function __construct(
     )
