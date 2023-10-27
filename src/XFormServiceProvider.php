@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use XForm\Console\Commands\XFormInstallationCommand;
 use XForm\View\Components\Form\Checkbox;
 use XForm\View\Components\Form\Disabled;
-use XForm\View\Components\Form\JsScripts;
+use XForm\View\Components\Form\Scripts;
 use XForm\View\Components\Form\Input;
 use XForm\View\Components\Form\Label;
 use XForm\View\Components\Form\Radio;
