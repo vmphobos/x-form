@@ -23,7 +23,7 @@ class Scripts extends Component
               $('.copy-text').on('click', function() {
                   var $this = $(this).parent();
                   $this.focus().select();
-                  navigator.clipboard.writeText($this.text());
+                  navigator.clipboard.writeText($this.text().trim());
               });
             </script>
         HTML;
