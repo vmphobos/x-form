@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use XForm\Console\Commands\XFormInstallationCommand;
 use XForm\View\Components\Form\Checkbox;
 use XForm\View\Components\Form\Disabled;
+use XForm\View\Components\Form\JsScripts;
 use XForm\View\Components\Form\Input;
 use XForm\View\Components\Form\Label;
 use XForm\View\Components\Form\Radio;
@@ -29,6 +30,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.select', Select::class);
         Blade::component('form.textarea', Textarea::class);
         Blade::component('form.disabled', Disabled::class);
+        Blade::component('form.scripts', JsScripts::class);
 
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
