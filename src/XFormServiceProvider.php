@@ -24,10 +24,10 @@ class XFormServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__ . '/../../views', 'x-form');
-
+        
         $this->publishes([
-            __DIR__ . '/../../views' => resource_path('views/vendor/x-form'),
-        ]);
+            __DIR__ . '/..//views' => resource_path('views/vendor/x-form'),
+        ], 'x-form:views');
         
         Blade::component('form.checkbox', Checkbox::class);
         Blade::component('form.input', Input::class);
