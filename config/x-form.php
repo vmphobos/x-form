@@ -10,7 +10,7 @@ return [
     | The class name for the <label> tag to stylize the text title.
     |
      */
-    'label' => 'form-label fw-bold text-capitalize',
+    'label' => 'form-label text-capitalize',
     'spinner' => 'spinner-border spinner-border-sm',
 
     /**
@@ -103,7 +103,7 @@ return [
         'empty_message' => 'text-capitalize text-muted', //when no data
         'group' => [
             'div' => 'd-inline-block w-100', //the div that surrounds a group of checkboxes or radios
-            'label' => 'mt-3 fw-bold', //the label headline for each group of checkboxes or radios
+            'label' => 'mt-3 form-label', //the label headline for each group of checkboxes or radios
         ],
     ],
 
