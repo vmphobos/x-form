@@ -12,16 +12,16 @@
     <textarea
         {{
            $attributes->class([
-                   config('x-form.textarea'),
-                   config('x-form.invalid') => $errors->has($rule)
-               ])
-               ->merge([
-                   'id' => $uuid,
-                   'name' => $name,
-                   'wire:model' . $modifier => $model,
-                   'wire:key' => str($name)->slug(),
-                   'rows' => $rows,
-               ])
+               config('x-form.textarea'),
+               config('x-form.invalid') => $errors->has($rule)
+           ])
+           ->merge([
+               'id' => $uuid,
+               'name' => $name,
+               'wire:model' . $modifier => $model,
+               'wire:key' => str($name)->slug(),
+               'rows' => $rows,
+           ])
         }}
 
         @if($modifier)
