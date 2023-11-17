@@ -13,10 +13,12 @@
     }} 
     style="{{ config('x-form.disabled.style') }}"
 >
-    {{ $value ?: '-' }}
+    {{ (!empty($value) || is_numeric($value)) ? $value : '-' }}
     @if($value)
         @if($selectable)
             <i class="copy-text fa-regular fa-copy float-end mt-1" role="button"></i>
+        @elseif($link)
+            <a href="{{ $value }}" class="text-dark float-end"><i class="fa-regular fa-link"></i></a>
         @elseif($mail)
             <a href="mailto:{{ $value }}" class="text-dark float-end"><i class="fa-regular fa-envelope"></i></a>
         @elseif($phone)
