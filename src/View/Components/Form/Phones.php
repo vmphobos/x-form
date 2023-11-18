@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Form;
 
-use App\Models\Country;
 use Closure;
 use Illuminate\Contracts\View\View;
 
@@ -32,10 +31,7 @@ class Phones extends FormElement
         if ($this->dirty) {
             $this->modifier ??= 'blur';
         }
-
-        //this should either return a model or a static country array key-ed by iso code with title and calling code
-        $this->countries = Country::getFromCache()->keyBy('iso_code')->map->only(['title', 'calling_code'])->toArray();
-
+        
         $this->phone_types = [
             'phone' => 'fa-solid fa-phone-flip',
             'mobile' => 'fa-solid fa-mobile',
