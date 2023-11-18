@@ -15,6 +15,7 @@ class Disabled extends Component
         public ?string $icon = null,
         public ?string $tooltip = null,
         public ?bool $selectable = false,
+        public ?bool $link = false,
         public ?bool $mail = false,
         public ?bool $phone = false,
         public ?bool $fax = false,
