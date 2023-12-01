@@ -1,6 +1,6 @@
 <?php
 
-namespace XForm\View\Components\Form;
+namespace App\View\Components\Form;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -9,6 +9,9 @@ use Illuminate\View\Component;
 abstract class FormElement extends Component
 {
     public $wire = 'wire:model';
+    public ?string $name = null;
+    public ?string $rule = null;
+    public ?string $modifier = null;
 
     public function __construct() {
         $this->name ??= $this->model;
