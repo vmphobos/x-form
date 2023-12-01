@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Form;
 
+use App\Models\Country;
 use Closure;
 use Illuminate\Contracts\View\View;
 
@@ -12,11 +13,10 @@ class Phones extends FormElement
     public function __construct(
         public ?array $countries = [],
         public ?array $phone_types = [],
-        public ?string $name = null,
-        public ?string $array_name = 'phone_numbers', //default array name
+        public ?string $name = 'phone_numbers', //default phones array name
+        public ?string $model = null,
         public ?string $label = null,
         public ?string $icon = null,
-        public ?string $model = null,
         public ?string $modifier = null,
         public ?string $rule = null,
         public ?string $tooltip = null,
@@ -31,7 +31,10 @@ class Phones extends FormElement
         if ($this->dirty) {
             $this->modifier ??= 'blur';
         }
-        
+
+        //Countries should either return a model or a static country array key-ed by iso code with title and calling code
+        //$this->countries = Country::...keyBy('iso_code')->map->only(['title', 'calling_code'])->toArray();
+
         $this->phone_types = [
             'phone' => 'fa-solid fa-phone-flip',
             'mobile' => 'fa-solid fa-mobile',
@@ -40,13 +43,12 @@ class Phones extends FormElement
 
         //if model exists we have either a dot array or a form object
         if($this->model) {
-            //if model is a form object
+            //if model is a form object setup phone numbers object
             if(!str($this->model)->contains('.')) {
-
+                $this->model = "$this->model.$this->name";
             }
-
         } else {
-            $this->model = $this->array_name;
+            $this->model = $this->name;
         }
 
         parent::__construct();
