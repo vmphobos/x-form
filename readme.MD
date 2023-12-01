@@ -17,6 +17,14 @@ A fully customized bootstrap styled input including label, validation and input 
 ```
 <x-form.input model="title" label="title" />
 ```
+Make it required:
+```
+<x-form.input model="title" label="title" required />
+```
+Change the input tag type easily like this:
+```
+<x-form.input type="password" model="title" label="title" :required="$is_confirmed"/>
+```
 
 ### Select
 A select tag example with a computed livewire array list in the format of ['value' => 'title']. Not adding a list attribute will use the default list which is a boolean array (yes/no).
