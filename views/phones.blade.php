@@ -35,20 +35,36 @@
                 {{-- selected button --}}
                 <button type="button" class="btn btn-alt-secondary text-capitalize country-prefix-label" style="font-size: .9rem;">
                     @if(!str($model)->contains('.'))
-                        <i @class([
-                                $type_icon => !Arr::get($this->$array_name, $phone_country),
-                                'flag ' . strtolower(Arr::get($this->$array_name, $phone_country)) => Arr::get($this->$array_name, $phone_country)
+                        <i
+                            @class([
+                                $type_icon => !Arr::get($this->$name, $phone_country),
+                                'flag ' . strtolower(Arr::get($this->$name, $phone_country)) => Arr::get($this->$name, $phone_country)
                             ])
                         ></i>
-                        {{ Arr::get($this->$array_name, $phone_country) ? Arr::get($countries[Arr::get($this->$array_name, $phone_country)], 'calling_code') : '+__' }}
+                        {{ Arr::get($this->$name, $phone_country) ? Arr::get($countries[Arr::get($this->$name, $phone_country)], 'calling_code') : '+__' }}
                     @else
-                        {{-- ToDo  EDO check with form object to show flag correctly ...--}}
+                        @php
+                            $form_object = explode('.', $model);
+                            if(is_array($this->{$form_object[0]})) {
+                                //is array
+                                $array = $this->{$form_object[0]};
+                                if(Arr::has($array, $form_object[1])) {
+                                    $array = $array[$form_object[1]];
+                                }
+
+                            } else {
+                                //is object
+                                $array = $this->{$form_object[0]}->{$form_object[1]};
+                            }
+
+                        @endphp
+
                         <i @class([
-                            $type_icon => !Arr::get($this, "$model.$phone_country"),
-                            'flag ' . strtolower(Arr::get($this, "$model.$phone_country")) => Arr::get($this, "$model.$phone_country")
+                            $type_icon => !Arr::get($array, $phone_country),
+                            'flag ' . strtolower(Arr::get($array, $phone_country)) => Arr::get($array, $phone_country)
                         ])
                         ></i>
-                        {{ Arr::get($this, "$model.$phone_country") ? Arr::get($countries[Arr::get($this, "$model.$phone_country")], 'calling_code') : '+__' }}
+                        {{ Arr::get($array, $phone_country) ? Arr::get($countries[Arr::get($array, $phone_country)], 'calling_code') : '+__' }}
                     @endif
                 </button>
 
@@ -88,7 +104,7 @@
                       ])
                       ->merge([
                           'id' => $for,
-                          'name' => $array_name . '[]',
+                          'name' => $name . '[]',
                           'wire:model' . $modifier =>  "$model.$phone_name",
                           'wire:key' => "$model.$phone_name",
                       ])
