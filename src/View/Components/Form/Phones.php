@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace XForm\View\Components\Form;
 
 use App\Models\Country;
 use Closure;
