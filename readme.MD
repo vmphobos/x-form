@@ -80,6 +80,7 @@ public function yourFunction($category)
 }
 ```
 Below is the format of a full group x-form checkbox with click event and tooltips per item. 
+```
 <x-form.checkbox
     :list="$this->countries"
     label="Countries"
