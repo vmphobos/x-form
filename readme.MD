@@ -49,6 +49,8 @@ To make your checkbox or radio horizontal just add horizontal. By default horizo
 ```
 <x-form.radio :list="$this->yourList" model="country" label="Country Of Origin" horizontal />
 ```
+
+### Grouped Checkbox
 A grouped checkbox with tooltip and toggle action per group. Label takes the main header while the title per grouped list will be the key name of your array.
 The toggle="funcionName" accepts the function that will handle the click event on each group category, for example selecting all group items.
 The tooltip-key is available only on category items and it should be a key name that holds the info you would like to show to the user.
@@ -68,11 +70,16 @@ $countries = [
       ],
   ],
 ];
-
-This should be the relevant x-form checkbox:
 ```
-Below is a full group x-form checkbox with click event and tooltips per item.
+Please note that when creating a function for the toggle action, it should always contain the array group index. In the above array this is the key "europe".
+So your action when clicking on Europe should call:
 ```
+public function yourFunction($category) 
+{
+  // $category is 'europe'
+}
+```
+Below is the format of a full group x-form checkbox with click event and tooltips per item. 
 <x-form.checkbox
     :list="$this->countries"
     label="Countries"
