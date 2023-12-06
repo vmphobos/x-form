@@ -6,7 +6,7 @@ X-Form is a fully customized package of Laravel blade components made for Livewi
 X-Form is easy to use and easier to update class styles by editing the x-form configuration accordingly
 ```
 <x-form.tag_name_goes_here 
-  model="livewire_model_name_here" 
+  model="livewire_model_name_here"
   label="the title of the field can also be html" 
   modifier="optional:live,blur etc." 
 />  
