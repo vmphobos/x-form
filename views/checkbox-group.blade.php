@@ -11,7 +11,11 @@
 
     @foreach($list as $category => $items)
         <div class="{{ config('x-form.check.group.div') }}">
-            <label class="{{ config('x-form.check.group.label') }}">{{ Str::headline($category) }}</label>
+            <label class="{{ config('x-form.check.group.label') }}"
+                @if($grouped && $toggle) wire:click="{{ $toggle }}('{{ $category }}')" role="button" @endif
+            >
+                {{ Str::headline($category) }}
+            </label>
 
             <div class="{{ config('x-form.check.vertical') }}">
                 <div wire:key="{{ $uuid }}">
