@@ -1,6 +1,6 @@
 <?php
 
-namespace XForm\View\Components\Form;
+namespace App\View\Components\Form;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,7 @@ class Checkbox extends FormElement
         public ?string $rule = null,
         public ?string $tooltip = null,
         public ?string $tooltipKey = null,
+        public ?string $toggle = '',
         public ?bool $required = false,
         public ?bool $horizontal = false,
         public ?bool $grouped = false,
@@ -40,9 +41,9 @@ class Checkbox extends FormElement
     public function render(): View|Closure|string
     {
         if($this->grouped) {
-             return view('x-form::checkbox-group');
+             return view('components.form.checkbox-group');
         }
 
-         return view('x-form::checkbox');
+         return view('components.form.checkbox');
     }
 }
