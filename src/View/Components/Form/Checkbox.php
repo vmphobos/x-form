@@ -41,9 +41,9 @@ class Checkbox extends FormElement
     public function render(): View|Closure|string
     {
         if($this->grouped) {
-             return view('components.form.checkbox-group');
+             return view('x-form::checkbox-group');
         }
 
-         return view('components.form.checkbox');
+         return view('x-form::checkbox');
     }
 }
