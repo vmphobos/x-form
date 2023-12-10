@@ -28,7 +28,8 @@ class XFormServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/..//views' => resource_path('views/vendor/x-form'),
         ], 'x-form:views');
-        
+
+        Blade::component('form.checkbox-group', Checkbox::class);
         Blade::component('form.checkbox', Checkbox::class);
         Blade::component('form.input', Input::class);
         Blade::component('form.label', Label::class);
