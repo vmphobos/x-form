@@ -9,11 +9,11 @@ use Illuminate\View\View;
 class Disabled extends Component
 {
     public function __construct(
-        public ?string $label = null,
-        public ?string $value = null,
-        public ?string $floating = null,
-        public ?string $icon = null,
-        public ?string $tooltip = null,
+        public ?string $label = '',
+        public ?string $value = '',
+        public ?string $floating = '',
+        public ?string $icon = '',
+        public ?string $tooltip = '',
         public ?bool $selectable = false,
         public ?bool $link = false,
         public ?bool $mail = false,
