@@ -11,9 +11,10 @@ class Disabled extends Component
     public function __construct(
         public ?string $label = '',
         public ?string $value = '',
-        public ?string $floating = '',
         public ?string $icon = '',
         public ?string $tooltip = '',
+        public ?string $before = '',
+        public ?string $after = '',
         public ?bool $selectable = false,
         public ?bool $link = false,
         public ?bool $mail = false,
