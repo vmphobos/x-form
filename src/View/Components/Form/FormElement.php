@@ -9,12 +9,22 @@ use Illuminate\View\Component;
 abstract class FormElement extends Component
 {
     public $wire = 'wire:model';
-    public ?string $name = null;
-    public ?string $rule = null;
-    public ?string $modifier = null;
+
+    public ?string $name = '';
+
+    public ?string $model = '';
+
+    public ?string $rule = '';
+
+    public ?string $modifier = '';
+
+    public ?string $before = '';
+
+    public ?string $after = '';
 
     public function __construct() {
         $this->name ??= $this->model;
+
         $this->rule ??= $this->model ?: $this->name;
 
         if($this->model && $this->modifier) {
