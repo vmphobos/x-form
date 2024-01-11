@@ -7,9 +7,9 @@
         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
     />
 @endif
-        
+
 {{ $before }}
-        
+
 <input
     {{
         $attributes->class([
@@ -33,9 +33,9 @@
         data-bs-toggle="tooltip" title={{ $tooltip }}
     @endif
 />
-        
+
 {{ $after }}
-        
+
 @if($floating && $label)
     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
