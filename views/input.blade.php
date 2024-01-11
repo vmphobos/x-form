@@ -7,20 +7,22 @@
         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
     />
 @endif
-
+        
+{{ $before }}
+        
 <input
     {{
         $attributes->class([
-                config('x-form.input'),
-                config('x-form.invalid') => $errors->has($rule)
-            ])
-            ->merge([
-                'id' => $uuid,
-                'type' => $type,
-                'name' => $name,
-                'wire:model' . $modifier => $model,
-                'wire:key' => str($name)->slug(),
-            ])
+            config('x-form.input'),
+            config('x-form.invalid') => $errors->has($rule)
+        ])
+        ->merge([
+            'id' => $uuid,
+            'type' => $type,
+            'name' => $name,
+            'wire:model' . $modifier => $model,
+            'wire:key' => $uuid,
+        ])
     }}
 
     @if($modifier)
@@ -31,7 +33,9 @@
         data-bs-toggle="tooltip" title={{ $tooltip }}
     @endif
 />
-
+        
+{{ $after }}
+        
 @if($floating && $label)
     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
         :model="$model" :modifier="$modifier" :icon="$icon" :tooltip="$tooltip" :required="$required"
