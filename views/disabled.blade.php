@@ -8,8 +8,8 @@
     @else
         @if($value)
             @if($selectable)
-                <span class="input-group-text btn btn-light">
-                    <i class="copy-text fa-regular fa-copy mt-1" role="button"></i>
+                <span class="input-group-text btn btn-light copy-text">
+                    <i class="fa-regular fa-copy mt-1" role="button"></i>
                 </span>
             @elseif($link)
                 <span class="input-group-text btn btn-light">
