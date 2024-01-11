@@ -7,17 +7,16 @@ use Illuminate\Contracts\View\View;
 
 class Textarea extends FormElement
 {
-    public string $uuid;
-
     public function __construct(
         public ?int $rows = 5,
-        public ?string $name = null,
-        public ?string $label = null,
-        public ?string $icon = null,
-        public ?string $model = null,
-        public ?string $modifier = null,
-        public ?string $rule = null,
-        public ?string $tooltip = null,
+        public ?string $uuid = '',
+        public ?string $name = '',
+        public ?string $label = '',
+        public ?string $icon = '',
+        public ?string $model = '',
+        public ?string $modifier = '',
+        public ?string $rule = '',
+        public ?string $tooltip = '',
         public ?bool $floating = false,
         public ?bool $required = false,
         public ?bool $dirty = false,
