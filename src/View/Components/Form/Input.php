@@ -7,10 +7,9 @@ use Illuminate\Contracts\View\View;
 
 class Input extends FormElement
 {
-    public string $uuid;
-
     public function __construct(
         public string $type = 'text',
+        public string $uuid = null,
         public ?string $name = null,
         public ?string $label = null,
         public ?string $icon = null,
