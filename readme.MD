@@ -5,7 +5,7 @@ X-Form is a fully customized package of Blade components made for Laravel 10, Li
 ### Format
 X-Form is easy to use and easier to update class styles by editing the x-form configuration accordingly
 ```
-<x-form.tag_name_goes_here 
+<x-form.{input, checkbox, radio, select, textarea, disabled, phones}
   model="livewire_model_name_here"
   label="the title of the field can also be html" 
   modifier="optional:live,blur etc." 
