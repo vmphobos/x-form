@@ -7,20 +7,19 @@ use Illuminate\Contracts\View\View;
 
 class Checkbox extends FormElement
 {
-    public string $uuid;
-
     public function __construct(
         public ?array $list = ['yes' => 1, 'no' => 0],
         public ?int $itemsPerColumn = 15,
         public ?int $total = 0,
-        public ?string $name = null,
-        public ?string $label = null,
-        public ?string $icon = null,
-        public ?string $model = null,
-        public ?string $modifier = null,
-        public ?string $rule = null,
-        public ?string $tooltip = null,
-        public ?string $tooltipKey = null,
+        public ?string $uuid = '',
+        public ?string $name = '',
+        public ?string $label = '',
+        public ?string $icon = '',
+        public ?string $model = '',
+        public ?string $modifier = '',
+        public ?string $rule = '',
+        public ?string $tooltip = '',
+        public ?string $tooltipKey = '',
         public ?string $toggle = '',
         public ?bool $required = false,
         public ?bool $horizontal = false,
