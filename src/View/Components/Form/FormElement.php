@@ -10,17 +10,17 @@ abstract class FormElement extends Component
 {
     public $wire = 'wire:model';
 
-    public ?string $name = '';
+    public ?string $name = null;
 
-    public ?string $model = '';
+    public ?string $model = null;
 
-    public ?string $rule = '';
+    public ?string $rule = null;
 
-    public ?string $modifier = '';
+    public ?string $modifier = null;
 
-    public ?string $before = '';
+    public ?string $before = null;
 
-    public ?string $after = '';
+    public ?string $after = null;
 
     public function __construct() {
         $this->name ??= $this->model;
