@@ -10,12 +10,12 @@ class Label extends Component
 {
 
     public function __construct(
-        public ?string $for = null,
-        public ?string $label = null,
-        public ?string $model = null,
-        public ?string $modifier = null,
-        public ?string $icon = null,
-        public ?string $tooltip = null,
+        public ?string $for = '',
+        public ?string $label = '',
+        public ?string $model = '',
+        public ?string $modifier = '',
+        public ?string $icon = '',
+        public ?string $tooltip = '',
         public ?bool $required = false
     )
     {
