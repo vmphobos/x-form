@@ -8,18 +8,17 @@ use Illuminate\Contracts\View\View;
 
 class Phones extends FormElement
 {
-    public string $uuid;
-
     public function __construct(
         public ?array $countries = [],
         public ?array $phone_types = [],
-        public ?string $name = 'phone_numbers', //default phones array name
-        public ?string $model = null,
-        public ?string $label = null,
-        public ?string $icon = null,
-        public ?string $modifier = null,
-        public ?string $rule = null,
-        public ?string $tooltip = null,
+        public ?string $uuid = '',
+        public ?string $name = 'phone_numbers', //default array name
+        public ?string $model = '',
+        public ?string $label = '',
+        public ?string $icon = '',
+        public ?string $modifier = '',
+        public ?string $rule = '',
+        public ?string $tooltip = '',
         public int $phone = 2,
         public int $mobile = 1,
         public int $fax = 1,
@@ -32,8 +31,8 @@ class Phones extends FormElement
             $this->modifier ??= 'blur';
         }
 
-        //Countries should either return a model or a static country array key-ed by iso code with title and calling code
-        //$this->countries = Country::...keyBy('iso_code')->map->only(['title', 'calling_code'])->toArray();
+        //this should either return a model or a static country array key-ed by iso code with title and calling code
+        $this->countries = Country::getFromCache()->keyBy('iso_code')->map->only(['title', 'calling_code'])->toArray();
 
         $this->phone_types = [
             'phone' => 'fa-solid fa-phone-flip',
