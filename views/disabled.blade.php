@@ -1,37 +1,51 @@
-@if($floating) <div class="{{ config('x-form.floating') }}"> @endif
-
-@if(!$floating && $label)
+@if($label)
     <x-form.label label="{!! $label !!}" :icon="$icon" />
 @endif
 
-<div 
-    {{ 
-        $attributes->class([
-            config('x-form.disabled.class'), 
-            'user-select-all' => $selectable && $value
-        ]) 
-    }} 
-    style="{{ config('x-form.disabled.style') }}"
->
-    {{ (!empty($value) || is_numeric($value)) ? $value : '-' }}
-    @if($value)
-        @if($selectable)
-            <i class="copy-text fa-regular fa-copy float-end mt-1" role="button"></i>
-        @elseif($link)
-            <a href="{{ $value }}" class="text-dark float-end"><i class="fa-regular fa-link"></i></a>
-        @elseif($mail)
-            <a href="mailto:{{ $value }}" class="text-dark float-end"><i class="fa-regular fa-envelope"></i></a>
-        @elseif($phone)
-            <a href="tel:{{ $value }}" class="text-dark float-end"><i class="fa-solid fa-phone-flip"></i></a>
-        @elseif($fax)
-            <a href="fax:{{ $value }}" class="text-dark float-end"><i class="fa-solid fa-fax"></i></a>
-        @elseif($map)
-            <a href="http://maps.google.com/?q={{ $value }}" target="_blank"><i class="fa-solid fa-location-dot"></i></a>
+<div class="input-group">
+    @if($before)
+        {{ $before }}
+    @else
+        @if($value)
+            @if($selectable)
+                <span class="input-group-text btn btn-light">
+                    <i class="copy-text fa-regular fa-copy mt-1" role="button"></i>
+                </span>
+            @elseif($link)
+                <span class="input-group-text btn btn-light">
+                    <a href="{{ $value }}" class="text-dark"><i class="fa-regular fa-link"></i></a>
+                </span>
+            @elseif($mail)
+                <span class="input-group-text btn btn-light">
+                    <a href="mailto:{{ $value }}" class="text-dark"><i class="fa-regular fa-envelope"></i></a>
+                </span>
+            @elseif($phone)
+                <span class="input-group-text btn btn-light">
+                    <a href="tel:{{ $value }}" class="text-dark"><i class="fa-solid fa-phone-flip"></i></a>
+                </span>
+            @elseif($fax)
+                <span class="input-group-text btn btn-light">
+                    <a href="fax:{{ $value }}" class="text-dark"><i class="fa-solid fa-fax"></i></a>
+                </span>
+            @elseif($map)
+                <span class="input-group-text btn btn-light">
+                    <a href="http://maps.google.com/?q={{ $value }}" target="_blank"><i class="fa-solid fa-location-dot"></i></a>
+                </span>
+            @endif
         @endif
     @endif
-</div>
 
-@if($floating && $label)
-        <x-form.label label="{!! $label !!}" :icon="$icon" />
+    <div
+        {{
+            $attributes->class([
+                config('x-form.disabled.class'),
+                'user-select-all' => $selectable && $value
+            ])
+        }}
+        style="{{ config('x-form.disabled.style') }}"
+    >
+        {{ (!empty($value) || is_numeric($value)) ? $value : '-' }}
     </div>
-@endif
+
+    {{ $after }}
+</div>
