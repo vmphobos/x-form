@@ -9,7 +9,7 @@ class Input extends FormElement
 {
     public function __construct(
         public string $type = 'text',
-        public string $uuid = null,
+        public ?string $uuid = null,
         public ?string $name = null,
         public ?string $label = null,
         public ?string $icon = null,
