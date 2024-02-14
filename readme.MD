@@ -1,11 +1,11 @@
 ## Introduction
 
-X-Form is a fully customized package of Blade components made for Laravel 10, Livewire 3 and Bootstrap v.5.
+X-Form is a fully customized package of Blade components made for Laravel 10+, Livewire 3+ and Bootstrap v5+.
 
 ### Format
-X-Form is easy to use and easier to update class styles by editing the x-form configuration accordingly
+The following syntax is used to render a div containing all necessary form parts for your property
 ```
-<x-form.{input, checkbox, radio, select, textarea, disabled, phones}
+<x-form.{input, checkbox, radio, select, textarea, disabled, phones} // a
   model="livewire_model_name_here"
   label="the title of the field can also be html" 
   modifier="optional:live,blur etc." 
