@@ -3,8 +3,8 @@
 @endif
 
 <div class="input-group">
-    @if($before)
-        {{ $before }}
+    @if($prepend)
+        {{ $prepend }}
     @else
         @if($value)
             @if($selectable)
@@ -47,5 +47,5 @@
         {{ (!empty($value) || is_numeric($value)) ? $value : '-' }}
     </div>
 
-    {{ $after }}
+    {{ $append }}
 </div>
