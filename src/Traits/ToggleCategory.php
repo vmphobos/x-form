@@ -9,7 +9,7 @@ trait ToggleCategory
      * @param $array - The array that we will store the ids of the clicked category
      * @return void
      */
-    public function toggleAll($list, $category, $array)
+    public function toggleAll($list, $category, $array): void
     {
         $category = collect($list)->get($category) ?? [];
         $ids = [];
