@@ -18,9 +18,9 @@ abstract class FormElement extends Component
 
     public ?string $modifier = null;
 
-    public ?string $before = null;
+    public ?string $prepend = null;
 
-    public ?string $after = null;
+    public ?string $append = null;
 
     public function __construct() {
         $this->name ??= $this->model;
