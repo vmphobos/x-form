@@ -8,7 +8,7 @@
     />
 @endif
 
-{{ $before }}
+{{ $prepend }}
 
 <input
     {{
@@ -34,7 +34,7 @@
     @endif
 />
 
-{{ $after }}
+{{ $append }}
 
 @if($floating && $label)
     <x-form.label for="{{ $uuid }}" label="{!! $label !!}"
