@@ -1,0 +1,30 @@
+{
+    "name": "vmphobos/xform",
+    "description": "Reusable Laravel Form Components for Livewire and standard Blade.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vasilis Milopoulos",
+            "email": "vasilis.milopoulos@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vmphobos\\XForm\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vmphobos\\XForm\\XFormServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
