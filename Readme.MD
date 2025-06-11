@@ -1,6 +1,6 @@
 ## Introduction
 
-X-Form is a fully customized package of Blade components made for Laravel 11+, Livewire 3+ and Bootstrap v5+.
+X-Form is a fully customized package of Blade components made for Laravel 10+. Using Livewire 3+, Latest Tailwind CSS and AlpineJS.
 To add to your project from the console run:
 ```
 composer require vmphobos/x-form
