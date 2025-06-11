@@ -56,6 +56,6 @@ class Radio extends FormElement
      */
     public function render(): View|Closure|string
     {
-        return view('x-form::radio');
+        return view('x-form::components.form.radio');
     }
 }

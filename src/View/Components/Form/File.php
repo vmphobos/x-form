@@ -29,6 +29,6 @@ class File extends FormElement
 
     public function render(): View|Closure|string
     {
-        return view('x-form::file');
+        return view('x-form::components.form.file');
     }
 }

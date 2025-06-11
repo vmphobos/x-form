@@ -26,6 +26,6 @@ class Input extends FormElement
 
     public function render(): View|Closure|string
     {
-        return view('x-form::input');
+        return view('x-form::components.form.input');
     }
 }

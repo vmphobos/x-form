@@ -27,6 +27,6 @@ class Disabled extends Component
 
     public function render(): View|Closure|string
     {
-        return view('x-form::disabled');
+        return view('x-form::components.form.disabled');
     }
 }
