@@ -1,5 +1,5 @@
 {
-    "name": "vmphobos/xform",
+    "name": "vmphobos/x-form",
     "description": "Reusable Laravel Form Components for Livewire and standard Blade.",
     "type": "library",
     "license": "MIT",
