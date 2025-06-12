@@ -1,25 +1,21 @@
 {{-- Label --}}
-@if (!$floating && ($label || $attributes->hasSlot('label')))
-    @if ($attributes->hasSlot('label'))
-        {{ $slot->label }}
-    @else
-        <x-form.label
-            :for="$uuid"
-            :label="$label"
-            :model="$model"
-            :modifier="$modifier"
-            :icon="$icon"
-            :tooltip="$tooltip"
-            :help="$help"
-            :required="$required"
-        />
-    @endif
+@if (!$floating && $label)
+    <x-form.label
+        :for="$uuid"
+        :label="$label"
+        :model="$model"
+        :modifier="$modifier"
+        :icon="$icon"
+        :tooltip="$tooltip"
+        :help="$help"
+        :required="$required"
+    />
 @endif
 
 @if ($group)
     <div
         @class([
-            'flex items-center',  {{-- Replacing Bootstrap input-group with flex --}}
+            'flex items-center',
             'text-sm' => $group == 'sm',
             'text-lg' => $group == 'lg',
             'text-xl' => $group == 'xl',

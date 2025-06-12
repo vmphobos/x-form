@@ -42,6 +42,6 @@ class Checkbox extends FormElement
             return view('x-form::components.form.checkbox-group');
         }
 
-        return view('x-form::components.form.checkbox');
+        return view('x-form::checkbox');
     }
 }

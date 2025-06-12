@@ -34,6 +34,6 @@ class Label extends Component
 
     public function render(): View|Closure|string
     {
-        return view('x-form::components.form.label');
+        return view('x-form::label');
     }
 }

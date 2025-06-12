@@ -20,12 +20,15 @@ class Input extends FormElement
         public ?string $rule = null,
         public bool $invalid = false,
         public bool $border = true,
+        public ?bool $group = false,
+        public ?bool $dirty = false,
+        public string|bool $validate = false,
     ) {
         parent::__construct();
     }
 
     public function render(): View|Closure|string
     {
-        return view('x-form::components.form.input');
+        return view('x-form::input');
     }
 }

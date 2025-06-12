@@ -25,11 +25,11 @@ return [
         'copy' => 'ti ti-copy',  // Tabler icon class
         'link' => 'ti ti-link',  // Tabler icon class
         'email' => 'ti ti-mail',  // Tabler icon class
-        'phone' => 'ti ti-phone',  // Tabler icon class
+        'phone' => '<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor"  class="w-4 h-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 3a1 1 0 0 1 .877 .519l.051 .11l2 5a1 1 0 0 1 -.313 1.16l-.1 .068l-1.674 1.004l.063 .103a10 10 0 0 0 3.132 3.132l.102 .062l1.005 -1.672a1 1 0 0 1 1.113 -.453l.115 .039l5 2a1 1 0 0 1 .622 .807l.007 .121v4c0 1.657 -1.343 3 -3.06 2.998c-8.579 -.521 -15.418 -7.36 -15.94 -15.998a3 3 0 0 1 2.824 -2.995l.176 -.005h4z" /></svg>',  // Tabler icon class
         'fax' => 'ti ti-printer',  // Tabler icon class
         'map' => 'ti ti-map-pin',  // Tabler icon class
         // Raw SVG example
-        'info' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info cursor-pointer opacity-75 hover:opacity-100"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>', // Example SVG icon
+        'info' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info cursor-pointer opacity-75 hover:opacity-100"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>',
     ],
 
     /**
@@ -41,13 +41,13 @@ return [
     | Tailwind utilities added for better styling with Tailwind.
     |
      */
-    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start focus:ring-2 focus:ring-primary w-full',
+    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
-    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start focus:ring-2 focus:ring-primary w-full',
+    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
     'select' => 'form-select form-control capitalize shadow-none',  // Could be customized further for Tailwind
 
-    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start truncate w-full focus:ring-2 focus:ring-primary cursor-pointer hover:opacity-80',  // Tailwind-focused styling
+    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary cursor-pointer hover:opacity-80',  // Tailwind-focused styling
 
     /**
     |---------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     | Styling for error messages.
     |
      */
-    'error' => 'invalid-feedback',
+    'error' => 'text-danger',
 
     /**
     |---------------------------------------------------------------------------
@@ -78,6 +78,20 @@ return [
     |
      */
     'border' => 'border-warning',
+
+    'check' => [
+        'div' => 'form-check',
+        'label' => 'form-check-label capitalize',
+        'input' => 'form-check-input shadow-none',
+        'horizontal' => 'flex space-x-4 py-2.5 mt-1',
+        'vertical' => 'flex flex-col gap-1 mt-1',
+        'inline' => 'form-check-inline', //usable if horizontal is enabled
+        'empty_message' => 'capitalize text-muted', //when no data
+        'group' => [
+            'div' => 'inline-block w-full ', //the div that surrounds a group of checkboxes or radios
+            'label' => 'mt-3 font-bold', //the label headline for each group of checkboxes or radios
+        ],
+    ],
 
     /**
     |---------------------------------------------------------------------------

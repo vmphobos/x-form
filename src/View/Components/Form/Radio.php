@@ -35,7 +35,7 @@ class Radio extends FormElement
         public ?string $tooltip = null,
         public ?string $help = null,
         public ?bool $required = false,
-        public ?bool $horizontal = false, // horizontal as variable name
+        public ?bool $horizontal = true, // horizontal as variable name
         public ?bool $dirty = false,
     ) {
         // Handle modifier for dirty state
@@ -56,6 +56,6 @@ class Radio extends FormElement
      */
     public function render(): View|Closure|string
     {
-        return view('x-form::components.form.radio');
+        return view('x-form::radio');
     }
 }
