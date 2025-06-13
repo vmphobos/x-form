@@ -10,7 +10,7 @@ return [
     | The class name for the <label> tag to stylize the text title.
     |
      */
-    'label' => 'mb-1 text-sm font-normal tracking-wider text-dark/50 uppercase',
+    'label' => 'mb-1 text-sm font-normal tracking-wider text-dark/50 dark:text-gray-300 uppercase',
 
     /**
     |---------------------------------------------------------------------------
@@ -41,13 +41,15 @@ return [
     | Tailwind utilities added for better styling with Tailwind.
     |
      */
-    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-800 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
-    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-800 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
     'select' => 'form-select form-control capitalize shadow-none',  // Could be customized further for Tailwind
 
-    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-gray-500 text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary cursor-pointer hover:opacity-80',  // Tailwind-focused styling
+    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-800 text-gray-500 dark:text-light text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary cursor-pointer hover:opacity-80',  // Tailwind-focused styling
+
+    'dropdown-item' => 'flex items-center w-full text-left gap-3 pl-4 py-2 clear-both font-normal cursor-pointer whitespace-nowrap text-gray-500 dark:text-dark-100 border-none rounded-none hover:opacity-80 hover:bg-gray-100 hover:dark:bg-dark-800 capitalize',
 
     /**
     |---------------------------------------------------------------------------
