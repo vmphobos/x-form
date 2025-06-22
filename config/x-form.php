@@ -10,7 +10,7 @@ return [
     | The class name for the <label> tag to stylize the text title.
     |
      */
-    'label' => 'mb-1 text-sm font-normal tracking-wider text-dark/50 dark:text-gray-300 uppercase',
+    'label' => 'mb-1 text-sm font-normal tracking-wider text-dark/50 dark:text-gray-300 capitalize',
 
     /**
     |---------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
         'fax' => 'ti ti-printer',  // Tabler icon class
         'map' => 'ti ti-map-pin',  // Tabler icon class
         // Raw SVG example
-        'info' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info cursor-pointer opacity-75 hover:opacity-100"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>',
+        'info' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info hover:cursor-pointer opacity-75 hover:opacity-100"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>',
     ],
 
     /**
@@ -41,15 +41,15 @@ return [
     | Tailwind utilities added for better styling with Tailwind.
     |
      */
-    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-800 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-500 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
-    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-800 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark dark:border-dark-500 rounded-md border border-gray-200 text-gray-500 dark:text-light text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
     'select' => 'form-select form-control capitalize shadow-none',  // Could be customized further for Tailwind
 
-    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-800 text-gray-500 dark:text-light text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary cursor-pointer hover:opacity-80',  // Tailwind-focused styling
+    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-500 text-gray-500 dark:text-light text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary hover:cursor-pointer hover:opacity-80',  // Tailwind-focused styling
 
-    'dropdown-item' => 'flex items-center w-full text-left gap-3 pl-4 py-2 clear-both font-normal cursor-pointer whitespace-nowrap text-gray-500 dark:text-dark-100 border-none rounded-none hover:opacity-80 hover:bg-gray-100 hover:dark:bg-dark-800 capitalize',
+    'dropdown-item' => 'flex items-center w-full text-left gap-3 pl-4 py-2 clear-both font-normal hover:cursor-pointer whitespace-nowrap text-gray-500 dark:text-dark-100 border-none rounded-none hover:opacity-80 hover:bg-gray-100 hover:dark:bg-dark-800 capitalize',
 
     /**
     |---------------------------------------------------------------------------
@@ -81,17 +81,23 @@ return [
      */
     'border' => 'border-warning',
 
+    'radio' => [
+        'checked' => 'absolute inset-0 w-2 h-2 m-auto rounded-full bg-blue-400 opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none',
+        'input' => 'peer appearance-none w-4 h-4 border-2 border-blue-500 rounded-full shrink-0 cursor-pointer',
+        'label' => 'px-2 text-dark dark:text-gray-300 peer-checked:font-medium capitalize',
+    ],
+
     'check' => [
-        'div' => 'form-check',
-        'label' => 'form-check-label capitalize',
-        'input' => 'form-check-input shadow-none',
-        'horizontal' => 'flex space-x-4 py-2.5 mt-1',
+        'div' => 'flex items-center gap-3',
+        'label' => 'relative w-5 h-5 border-2 border-gray-300 rounded-sm cursor-pointer flex items-center justify-center peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition',
+        'input' => 'peer hidden',
+        'horizontal' => '',
         'vertical' => 'flex flex-col gap-1 mt-1',
-        'inline' => 'form-check-inline', //usable if horizontal is enabled
-        'empty_message' => 'capitalize text-muted', //when no data
+        'inline' => 'inline-block mr-4', //usable if horizontal is enabled
+        'empty_message' => 'capitalize text-gray-500', //when no data
         'group' => [
             'div' => 'inline-block w-full ', //the div that surrounds a group of checkboxes or radios
-            'label' => 'mt-3 font-bold', //the label headline for each group of checkboxes or radios
+            'label' => 'dark:text-gray-200 mt-3 font-bold hover:cursor-pointer', //the label headline for each group of checkboxes or radios
         ],
     ],
 
@@ -104,7 +110,7 @@ return [
     |
      */
     'disabled' => [
-        'class' => 'mt-2 p-2 flex items-center gap-2 bg-gray-50 rounded-md border border-gray-200 text-dark text-start truncate w-full',
+        'class' => 'mt-2 p-2 flex items-center gap-2 bg-gray-50 dark:bg-dark dark:border-dark-500 dark:text-dark-300 rounded-md border border-gray-200 text-dark text-start truncate w-full',
         'style' => ''
     ],
 ];

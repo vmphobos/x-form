@@ -20,7 +20,7 @@
                 x-on:dragleave.prevent="isDragging = false"
                 x-on:drop.prevent="handleDrop"
                 :class="{ 'bg-light/20 dark:bg-black/20 border-primary': isDragging }"
-                class="flex flex-col items-center justify-center w-full h-64 border-2 border-light border-dashed rounded-lg cursor-pointer bg-transparent hover:bg-light/10 dark:hover:bg-black/10"
+                class="flex flex-col items-center justify-center w-full h-64 border-2 border-light border-dashed rounded-lg hover:cursor-pointer bg-transparent hover:bg-light/10 dark:hover:bg-black/10"
             >
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
@@ -54,7 +54,7 @@
                     <p class="text-xs text-dark dark:text-light">{{ $help }}</p>
                 </div>
                 @elseif($icon || $svg)
-                    <button type="button" class="px-3 py-2 bg-gray-200 rounded-md flex items-center gap-2 cursor-pointer hover:opacity-80" x-on:click="$refs.file.click()" aria-label="{{ __('Upload Photo') }}">
+                    <button type="button" class="px-3 py-2 bg-gray-200 rounded-md flex items-center gap-2 hover:cursor-pointer hover:opacity-80" x-on:click="$refs.file.click()" aria-label="{{ __('Upload Photo') }}">
                         @if ($icon)
                             <i class="{{ $icon }}"></i>
                         @else
@@ -84,7 +84,7 @@
                     {{
                         $attributes
                         ->class([
-                            'w-full mt-2 file:cursor-pointer text-sm text-light file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 dark:file:bg-dark-700 file:text-primary-700 dark:file:text-white hover:file:bg-primary-100 dark:hover:file:bg-dark-600' => !$dropzone && !$icon,
+                            'mt-2 w-full file:cursor-pointer text-sm text-gray-500 dark:text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 dark:file:bg-primary-600 file:text-primary-700 dark:file:text-white hover:file:bg-primary-100 dark:hover:file:bg-primary-500' => !$dropzone && !$icon,
                             'hidden' => $dropzone || $icon || $svg
                             ])
                         ->merge([
