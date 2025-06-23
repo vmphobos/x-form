@@ -1,5 +1,6 @@
-<div wire:key="{{ $uuid }}"
-     x-data="{
+<div
+    wire:key="{{ $uuid }}"
+    x-data="{
         limit: {{ $limit }},
         characters() {
             if (this.limit > 0) {
@@ -47,7 +48,7 @@
 
                 @if ($tooltip && !$label)
                     x-tooltip="{{ $tooltip }}"
-        @endif
+                 @endif
     ></textarea>
 
             @if ($showCount)
@@ -78,9 +79,7 @@
                 />
             @endif
         </div>
-    @endif
-
-    @error($rule)
-    <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
-    @enderror
+        @error($rule)
+        <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+        @enderror
 </div>
