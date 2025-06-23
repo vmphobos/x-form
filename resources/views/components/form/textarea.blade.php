@@ -12,23 +12,18 @@
     @if ($floating)
         <div class="{{ config('x-form.floating') }}">
             @endif
-
             {{-- Label above textarea (non-floating) --}}
-            @if (!$floating && ($label || $attributes->hasSlot('label')))
-                @if ($attributes->hasSlot('label'))
-                    {{ $slot->label }}
-                @else
-                    <x-form.label
-                        :for="$uuid"
-                        :label="$label"
-                        :model="$model"
-                        :modifier="$modifier"
-                        :icon="$icon"
-                        :tooltip="$tooltip"
-                        :help="$help"
-                        :required="$required"
-                    />
-                @endif
+            @if (!$floating && $label)
+                <x-form.label
+                    :for="$uuid"
+                    :label="$label"
+                    :model="$model"
+                    :modifier="$modifier"
+                    :icon="$icon"
+                    :tooltip="$tooltip"
+                    :help="$help"
+                    :required="$required"
+                />
             @endif
 
             <textarea
@@ -70,21 +65,18 @@
             @endif
 
             {{-- Label below textarea (floating) --}}
-            @if ($floating && ($label || $attributes->hasSlot('label')))
-                @if ($attributes->hasSlot('label'))
-                    {{ $slot->label }}
-                @else
-                    <x-form.label
-                        :for="$uuid"
-                        :label="$label"
-                        :model="$model"
-                        :modifier="$modifier"
-                        :icon="$icon"
-                        :tooltip="$tooltip"
-                        :help="$help"
-                        :required="$required"
-                    />
-                @endif
+            @if ($floating && $label )
+                <x-form.label
+                    :for="$uuid"
+                    :label="$label"
+                    :model="$model"
+                    :modifier="$modifier"
+                    :icon="$icon"
+                    :tooltip="$tooltip"
+                    :help="$help"
+                    :required="$required"
+                />
+            @endif
         </div>
     @endif
 
