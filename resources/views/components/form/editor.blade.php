@@ -1,12 +1,5 @@
-@props([
-    'ulid' => (string) str()->ulid(),
-    'label' => null,
-    'content' => null,
-    'model' => null,
-    'has_uploads' => false,
-])
 <div>
-    <div x-data="editor('{{ $ulid }}', '{{ $model }}', $wire)">
+    <div x-data="editor('{{ $uuid }}', '{{ $model }}', $wire)">
         @if($label)
             <div class="{{ config('x-form.label') }}">{{ $label }}</div>
         @endif
@@ -195,7 +188,7 @@
             <div>
                 {{-- TEXT COLOR --}}
                 <button
-                    id="{{ $ulid }}_text_picker"
+                    id="{{ $uuid }}_text_picker"
                     type="button" @click="colorPicker.openColorPicker($el, 'text')"
                     class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
                     x-ref="text_picker"
@@ -222,7 +215,7 @@
 
                 {{-- BG COLOR --}}
                 <button
-                    id="{{ $ulid }}_bg_picker"
+                    id="{{ $uuid }}_bg_picker"
                     type="button" @click="colorPicker.openColorPicker($el, 'background')"
                     class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
                     x-ref="bg_picker"
@@ -631,8 +624,8 @@
             </button>
 
             {{-- FILE MANAGER INSERT --}}
-            @if($has_uploads)
-                <livewire:backend.file-manager :key="'file_manager_' . $ulid" />
+            @if($withFilemanager)
+                <livewire:file-manager :key="'file_manager_' . $uuid" />
             @endif
 
             {{-- IMAGE LINK INSERT --}}
@@ -848,7 +841,7 @@
 
         {{-- EDITOR --}}
         <div
-            id="{{ $ulid }}"
+            id="{{ $uuid }}"
             class="p-4 min-h-60 overflow-auto outline-none bg-white/30 border border-gray-200 rounded-b-md"
             contenteditable="true"
             @input="content = ($event.target.innerHTML === '<br>') ? null : $event.target.innerHTML, $wire.set('{{ $model }}', content, false)"

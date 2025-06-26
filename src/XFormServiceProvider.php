@@ -4,9 +4,12 @@ namespace Vmphobos\XForm;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 use Vmphobos\XForm\Console\Commands\XFormAutoInstaller;
+use Vmphobos\XForm\Livewire\FileManager;
 use Vmphobos\XForm\View\Components\Form\Checkbox;
 use Vmphobos\XForm\View\Components\Form\Disabled;
+use Vmphobos\XForm\View\Components\Form\Editor;
 use Vmphobos\XForm\View\Components\Form\File;
 use Vmphobos\XForm\View\Components\Form\Input;
 use Vmphobos\XForm\View\Components\Form\Label;
@@ -18,18 +21,32 @@ class XFormServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        //Config
+        // Register Livewire component filemanager
+        Livewire::component('filemanager', FileManager::class);
+
+        // Publish config file
         $this->publishes([__DIR__ . '/../config/x-form.php' => $this->getConfigPath()], 'x-form:config');
 
-        //Components
+        // Load views for components (Blade components)
         $this->loadViewsFrom(__DIR__.'/../resources/views/components/form', 'x-form');
 
+        // Optionally load general package views
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'your-package');
+
+        // Publish Blade components' views
         $this->publishes([
             __DIR__ . '/../resources/views/components/form' => resource_path('views/vendor/x-form'),
         ], 'x-form:views');
 
+        // Publish Livewire views
+        $this->publishes([
+            __DIR__.'/../resources/views/livewire' => resource_path('views/vendor/vmphobos/filemanager'),
+        ], 'views');
+
+        // Register Blade components (if necessary)
         $this->registerBladeComponents();
 
+        // Register console commands
         if ($this->app->runningInConsole()) {
             $this->commands([XFormAutoInstaller::class]);
         }
@@ -51,6 +68,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.checkbox-group', Checkbox::class);
         Blade::component('form.checkbox', Checkbox::class);
         Blade::component('form.input', Input::class);
+        Blade::component('form.editor', Editor::class);
         Blade::component('form.label', Label::class);
         Blade::component('form.radio', Radio::class);
         Blade::component('form.select', Select::class);
