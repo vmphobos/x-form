@@ -31,7 +31,7 @@ class XFormServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views/components/form', 'x-form');
 
         // Optionally load general package views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'your-package');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'x-form');
 
         // Publish Blade components' views
         $this->publishes([

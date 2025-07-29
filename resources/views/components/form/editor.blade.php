@@ -625,13 +625,13 @@
 
             {{-- FILE MANAGER INSERT --}}
             @if($withFilemanager)
-                <livewire:file-manager :key="'file_manager_' . $uuid" />
+                <livewire:filemanager :key="'file_manager_' . $uuid" />
             @endif
 
             {{-- IMAGE LINK INSERT --}}
             <div
                 x-data="{ showModal: false, url: '', width: '200', height: '200', border: '1', radius: '0', lastSelection: null }"
-                x-tooltip="{{ __('Insert Image') }}"
+                x-tooltip="{{ __('Insert Link Image') }}"
             >
                 <button type="button" @click="image.storeSelection(); image.showModal = true" class="p-2 hover:bg-gray-200 hover:cursor-pointer rounded-sm">
                     <svg
@@ -659,151 +659,194 @@
                     class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50"
                 >
                     <div class="bg-white p-4 rounded shadow">
-                        <div class="px-4 py-2 text-red-400">
-                            Add Copyright Free Images. Do not add link to images that you do not own or are not free to use. All urls must be served via https
+                        <div class="bg-yellow-50 text-yellow-800 rounded-lg text-sm p-4 mb-4">
+                            <strong class="font-semibold">Important Notice:</strong>
+                            <p>Please ensure that any images you use have the appropriate usage rights.
+                                <span class="font-semibold">Do not add links to images</span> that you do not own or are not free to use.
+                                All image URLs must be served via <strong>HTTPS</strong> and must be <strong>copyright-free</strong>.
+                            </p>
                         </div>
-                        <div class="mt-4">
+
+                        {{-- IMAGE INPUTS --}}
+                        <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
+                            <label for="image_url" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
+                                Image URL:
+                            </label>
+
+                            <input
+                                id="image_url"
+                                type="text"
+                                x-model="image.url"
+                                class="w-full p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
+                                placeholder="Enter image URL"
+                            />
+                        </div>
+
+                        <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
+                            <label for="image_alt_text" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
+                                ALT Text:
+                            </label>
+
+                            <input
+                                id="image_alt_text"
+                                type="text"
+                                x-model="image.alt"
+                                class="grow p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
+                                placeholder="Enter the alt title text for your image"
+                            />
+                        </div>
+
+                        <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-2 mb-2">
+                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
+                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
+                                    Width:
+                                </label>
+
+                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                    <input
+                                        type="range"
+                                        id="image_width"
+                                        class="w-full"
+                                        x-model="image.width"
+                                        @input="image.changeImageDimensions('w', $el.value)"
+                                        min="0"
+                                        max="1000"
+                                        step="1"
+                                    />
+
+                                    <span class="ml-2 text-xs text-gray-500" x-text="image.width"></span>
+
+                                    <button
+                                        type="button"
+                                        @click="image.changeConstraint()"
+                                        class="ml-2 w-max-w hover:opacity-80 hover:cursor-pointer"
+                                    >
+                                        <svg
+                                            x-show="image.constraint"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square"
+                                        >
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+                                        </svg>
+
+                                        <svg
+                                            x-show="!image.constraint"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square-off"
+                                        >
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 4h10a2 2 0 0 1 2 2v10m-.584 3.412a2 2 0 0 1 -1.416 .588h-12a2 2 0 0 1 -2 -2v-12c0 -.552 .224 -1.052 .586 -1.414" />
+                                            <path d="M3 3l18 18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
+                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
+                                    Height:
+                                </label>
+
+                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                    <input
+                                        type="range"
+                                        id="image_height"
+                                        class="w-full"
+                                        x-model="image.height"
+                                        @input="image.changeImageDimensions('h', $el.value)"
+                                        min="0"
+                                        max="1000"
+                                        step="1"
+                                    />
+
+                                    <span class="ml-2 text-xs text-gray-500" x-text="image.height"></span>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
+                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
+                                    Border:
+                                </label>
+
+                                <div class="w-full flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                    <input
+                                        type="range"
+                                        id="image_border"
+                                        x-model="image.border"
+                                        class="w-full"
+                                        min="0"
+                                        max="100"
+                                        step="1"
+                                    />
+
+                                    <span class="ml-2 text-xs text-gray-500" x-text="image.border"></span>
+
+                                    <input
+                                        type="color"
+                                        @input="image.setBorderColor($el.value)"
+                                        class="rounded-md h-5 w-5"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class=" w-full flex items-center border border-gray-300 rounded-sm">
+                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
+                                    Radius:
+                                </label>
+
+                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                    <input
+                                        type="range"
+                                        id="image_radius"
+                                        x-model="image.radius"
+                                        class="w-full"
+                                        min="0"
+                                        max="100"
+                                        step="1"
+                                    />
+
+                                    <span class="ml-2 text-xs text-gray-500" x-text="image.radius"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <label for="image_alignment" class="block text-xs font-medium mt-1 mb-1">Alignment:</label>
+                            <select
+                                id="image_alignment"
+                                x-model="image.alignment"
+                                class="rounded-sm border border-gray-300 bg-transparent p-1 w-full text-sm h-7"
+                            >
+                                <option value="none">None</option>
+                                <option value="left">Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-4 w-full">
                             <img
                                 x-show="image.url"
                                 :src="image.url"
                                 :style="'width:'+image.width+'px;height:'+image.height+'px;border:'+image.border+'px solid black;border-radius:'+image.radius+'px;'"
                                 class="shadow"
                             >
-                        </div>
-
-                        {{-- IMAGE INPUTS --}}
-                        <div class="flex flex-col items-center mb-2">
-                            <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
-                                <label for="image_url" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
-                                    Image URL:
-                                </label>
-
-                                <input
-                                    id="image_url"
-                                    type="text"
-                                    x-model="image.url"
-                                    class="w-2/3 p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
-                                    placeholder="Enter image URL"
-                                />
-                            </div>
-
-                            <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
-
-                                <label for="image_alt_text" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
-                                    ALT Text:
-                                </label>
-
-                                <input
-                                    id="image_alt_text"
-                                    type="text"
-                                    x-model="image.alt"
-                                    class="grow p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
-                                    placeholder="Enter the alt title text for your image"
-                                />
-                            </div>
-
-                            <div class="w-full grid grid-cols-4 gap-2 mb-2">
-                                <div class="max-w-max w-full flex items-center border border-gray-300 rounded-sm">
-                                    <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                        Width:
-                                    </label>
-
-                                    <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                        <input
-                                            type="range"
-                                            id="image_width"
-                                            @input="image.changeImageDimensions('w', $el.value)"
-                                            min="0"
-                                            max="1000"
-                                            step="1"
-                                        />
-
-                                        <span class="ml-2 text-xs text-gray-500" x-text="image.width"></span>
-
-                                        <button type="button" @click="image.changeConstraint()" class="ml-2 w-max-w hover:opacity-80 hover:cursor-pointer">
-                                            <svg x-show="image.constraint" xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /></svg>
-
-                                            <svg x-show="!image.constraint" xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 4h10a2 2 0 0 1 2 2v10m-.584 3.412a2 2 0 0 1 -1.416 .588h-12a2 2 0 0 1 -2 -2v-12c0 -.552 .224 -1.052 .586 -1.414" /><path d="M3 3l18 18" /></svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="max-w-max w-full flex items-center border border-gray-300 rounded-sm">
-                                    <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                        Height:
-                                    </label>
-
-                                    <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                        <input
-                                            type="range"
-                                            id="image_height"
-                                            @input="image.changeImageDimensions('h', $el.value)"
-                                            min="0"
-                                            max="1000"
-                                            step="1"
-                                        />
-
-                                        <span class="ml-2 text-xs text-gray-500" x-text="image.height"></span>
-                                    </div>
-                                </div>
-
-                                <div class="max-w-max w-full flex items-center border border-gray-300 rounded-sm">
-                                    <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                        Border:
-                                    </label>
-
-                                    <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                        <input
-                                            type="range"
-                                            id="image_border"
-                                            x-model="image.border"
-                                            min="0"
-                                            max="100"
-                                            step="1"
-                                        />
-
-                                        <span class="ml-2 text-xs text-gray-500" x-text="image.border"></span>
-
-                                        <input
-                                            type="color"
-                                            @change="image.setBorderColor($el.value)"
-                                            class="rounded-md h-5 w-5"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="max-w-max w-full flex items-center border border-gray-300 rounded-sm">
-                                    <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                        Radius:
-                                    </label>
-
-                                    <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                        <input
-                                            type="range"
-                                            id="image_radius"
-                                            x-model="image.radius"
-                                            min="0"
-                                            max="100"
-                                            step="1"
-                                        />
-
-                                        <span class="ml-2 text-xs text-gray-500" x-text="image.radius"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="w-full">
-                                <label for="image_alignment" class="block text-xs font-medium mt-1 mb-1">Alignment:</label>
-                                <select
-                                    id="image_alignment"
-                                    x-model="image.alignment"
-                                    class="rounded-sm border border-gray-300 bg-transparent p-1 w-full text-sm h-7"
-                                >
-                                    <option value="none">None</option>
-                                    <option value="left">Left</option>
-                                    <option value="right">Right</option>
-                                </select>
-                            </div>
                         </div>
 
                         <button

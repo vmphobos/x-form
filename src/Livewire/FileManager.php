@@ -13,22 +13,19 @@ class FileManager extends Component
     use WithFileUploads;
 
     #[Locked]
-    public string $disk = 'public';
-    public string $currentPath = '/'; // Current path of the gallery
+    public string $disk = 'media';
+    public string $current_path = '/'; // Current path of the gallery
     public $files = []; // Files in the current folder
-    public $selectedImage = null; // Selected image for preview
+    public $selected_image = null; // Selected image for preview
 
-    public $image;
+    public $mediafile;
 
-    public ?string $folderName = null; // Selected image for preview
-    public $loading = false; // Loading state
+    public ?string $folder_name = null; // Selected image for preview
 
     // Fetch the contents of the current path (gallery or subfolders)
     public function loadGallery(string $path = '/'): void
     {
-        $this->loading = true;
-
-        $this->currentPath = $path;
+        $this->current_path = $path;
 
         // Get the directories (folders) in the current directory on the 'gallery' disk
         $folders = Storage::disk($this->disk)->directories($path);
@@ -36,11 +33,11 @@ class FileManager extends Component
 
         // Loop through each folder and create relative URL
         foreach ($folders as $folder) {
-            $folderName = basename($folder); // Folder name
+            $folder_name = basename($folder); // Folder name
             $this->files[] = [
-                'name' => $folderName, // Folder name
+                'name' => $folder_name, // Folder name
                 'type' => 'folder', // Type: folder
-                'path' => str("$path/$folderName")->replace('//', '/')->value(), // Relative path for navigation
+                'path' => str("$path/$folder_name")->replace('//', '/')->value(), // Relative path for navigation
                 'url' => Storage::disk($this->disk)->url("$folder") // URL path for folder (accessible via Storage::url)
             ];
         }
@@ -55,35 +52,58 @@ class FileManager extends Component
                     'name' => basename($item),
                     'type' => 'image',
                     'path' => str("$path/".basename($item))->replace('//', '/')->value(), // Relative path for images
-                    'thumbnail' => Storage::disk($this->disk)->url($item) // URL path for images
+                    'url' => Storage::disk($this->disk)->url($item) // URL path for images
+                ];
+            }
+            else {
+                $this->files[] = [
+                    'name' => basename($item),
+                    'type' => 'file',
+                    'path' => str("$path/".basename($item))->replace('//', '/')->value(), // Relative path for images
+                    'url' => Storage::disk($this->disk)->url($item) // URL path for images
                 ];
             }
         }
-
-        $this->loading = false;
     }
 
     // Upload the image when the user selects one
-    public function updatedImage($file): void
+    public function updatedMediafile($file): void
     {
-        // Validate the file (optional but recommended)
+        // Validate the file - ToDo config file
         $this->validate([
-            'image' => 'image|max:10240',  // 10MB max size
+            'mediafile' => 'file|mimes:jpeg,png,jpg,gif,webp,doc,docx,xls,xlsx,pdf,mp4',
         ]);
 
-        // Store the image in the specified disk and path
-        $file->store($this->currentPath, $this->disk);
+        $real_filename = $file->getClientOriginalName();
 
-        $this->loadGallery($this->currentPath);
+        // Check if file already exists in the directory
+        $filePath = $this->current_path . '/' . $real_filename;
+
+        // If the file already exists, append a unique ID to the filename
+        if (Storage::disk($this->disk)->exists($filePath)) {
+            // Append uniqid() to the filename to make it unique
+            $filenameWithoutExtension = pathinfo($real_filename, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+
+            // Generate a new filename with uniqid()
+            $real_filename = $filenameWithoutExtension . '-' . uniqid() . '.' . $extension;
+        }
+
+        // Store the file with the updated (or original) filename
+        $file->storeAs($this->current_path, $real_filename, $this->disk);
+
+
+        $this->loadGallery($this->current_path);
     }
 
     // Get files and folders from a specific directory
     public function updatedFolderName(): void
     {
-        $this->validateOnly('folderName');
+        $this->validateOnly('folder_name');
 
         // Combine the path and folder name
-        $fullPath = $this->currentPath.'/'.$this->folderName;
+
+        $fullPath = str($this->current_path.'/'.$this->folder_name)->replace('//', '/')->value();
 
         // Create the folder
         if (Storage::disk($this->disk)->makeDirectory($fullPath)) {
@@ -98,7 +118,7 @@ class FileManager extends Component
 
     public function deleteDirectory(): void
     {
-        if (!$this->currentPath || $this->currentPath === '/') {
+        if (!$this->current_path || $this->current_path === '/') {
             abort(404);
         }
 
@@ -106,7 +126,7 @@ class FileManager extends Component
         $this->deleteRecursively();
 
         // Step 2: Delete the now-empty directory
-        Storage::disk($this->disk)->deleteDirectory($this->currentPath);
+        Storage::disk($this->disk)->deleteDirectory($this->current_path);
 
         $this->loadGallery();
 
@@ -115,7 +135,7 @@ class FileManager extends Component
 
     private function deleteRecursively(?string $path = null): void
     {
-        $path ??= $this->currentPath;
+        $path ??= $this->current_path;
         // Get all files in the directory
         $files = Storage::disk($this->disk)->files($path);
         foreach ($files as $file) {
@@ -139,26 +159,26 @@ class FileManager extends Component
     // Select an image and preview it
     public function selectImage($imagePath): void
     {
-        $this->selectedImage = $imagePath;
+        $this->selected_image = $imagePath;
     }
 
     // Go back to the previous folder
     public function goBack()
     {
-        $this->currentPath = dirname($this->currentPath); // Navigate to the parent directory
-        $this->loadGallery($this->currentPath); // Reload the parent directory contents
+        $this->current_path = dirname($this->current_path); // Navigate to the parent directory
+        $this->loadGallery($this->current_path); // Reload the parent directory contents
     }
 
     // Livewire Render Method
     public function render(): View
     {
-        return view('vmphobos::livewire.filemanager');
+        return view('x-form::livewire.filemanager');
     }
 
     protected function rules(): array
     {
         return [
-            'folderName' => 'required|regex:/^[a-zA-Z0-9-_\/]+$/',
+            'folder_name' => 'required|regex:/^[a-zA-Z0-9-_\/]+$/',
         ];
     }
 }
