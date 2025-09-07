@@ -48,17 +48,17 @@
 
                 @if ($tooltip && !$label)
                     x-tooltip="{{ $tooltip }}"
-                 @endif
-    ></textarea>
+            @endif
+        ></textarea>
 
             @if ($showCount)
                 {{-- Show character counter --}}
                 <small
                     class="ms-2 float-end"
                     :class="{
-                'text-gray-500': characters() >= 0,
-                'text-danger': characters() < 0
-            }"
+                    'text-gray-500': characters() >= 0,
+                    'text-danger': characters() < 0
+                }"
                 >
                     <span x-text="characters()"></span> characters
                     <span x-show="limit">left</span>
@@ -78,8 +78,12 @@
                     :required="$required"
                 />
             @endif
-        </div>
-        @error($rule)
-        <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
-        @enderror
+
+            @if ($floating)
+        </div> <!-- Close the floating div -->
+    @endif
+
+    @error($rule)
+    <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+    @enderror
 </div>

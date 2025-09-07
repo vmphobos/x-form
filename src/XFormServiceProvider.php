@@ -13,6 +13,7 @@ use Vmphobos\XForm\View\Components\Form\Editor;
 use Vmphobos\XForm\View\Components\Form\File;
 use Vmphobos\XForm\View\Components\Form\Input;
 use Vmphobos\XForm\View\Components\Form\Label;
+use Vmphobos\XForm\View\Components\Form\Password;
 use Vmphobos\XForm\View\Components\Form\Radio;
 use Vmphobos\XForm\View\Components\Form\Select;
 use Vmphobos\XForm\View\Components\Form\Textarea;
@@ -75,6 +76,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.file', File::class);
         Blade::component('form.textarea', Textarea::class);
         Blade::component('form.disabled', Disabled::class);
+        Blade::component('form.password', Password::class);
     }
 
     public function provides()

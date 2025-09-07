@@ -19,11 +19,30 @@
     <div class="row">
         @foreach($list as $category => $items)
             <div class="col-4 mb-5">
-                <label class="{{ config('x-form.check.group.label') }}"
-                       @if($grouped && $toggle) wire:click="{{ "$toggle('$category')" }}" type="button" @endif
-                >
-                    {{ Str::headline($category) }}
-                </label>
+                <div class="flex items-center space-x-3">
+                    <!-- Checkbox -->
+                    <label
+                        for="checkbox_{{ $category }}"
+                        class="{{ config('x-form.check.group.label') }} flex items-center cursor-pointer"
+                        @if($grouped && $toggle) wire:click="{{ "$toggle('$category')" }}" type="button" @endif
+                    >
+                        <div class="relative">
+                            <!-- Hidden checkbox input -->
+                            <input type="checkbox" id="checkbox_{{ $category }}" class="hidden peer" />
+
+                            <!-- Custom checkbox container -->
+                            <div class="w-6 h-6 border-2 border-gray-400 rounded-lg flex items-center justify-center transition-all peer-checked:bg-blue-500 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-400 peer-focus:ring-2 peer-focus:ring-blue-400">
+                                <!-- Checkmark icon (appears when checked) -->
+                                <svg class="w-4 h-4 text-white hidden peer-checked:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M16.293 4.293a1 1 0 010 1.414L8 13.414 4.707 10.121a1 1 0 111.414-1.414L8 10.586l7.879-7.879a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Title Text -->
+                    <span class="text-lg font-semibold text-gray-800 hover:text-blue-500 transition-all">{{ Str::headline($category) }}</span>
+                </div>
 
                 <div class="{{ config('x-form.check.vertical') }}">
                     <div wire:key="{{ $uuid }}">
