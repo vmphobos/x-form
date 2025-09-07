@@ -14,41 +14,31 @@
         ])
     >
         @foreach ($list as $title => $id)
-            <div
-                @class([
-                    config('x-form.check.div'),
-                    config('x-form.check.inline') => $horizontal
-                ])
-            >
-                <label class="relative flex items-center cursor-pointer">
-                    <div class="relative flex items-center w-4 h-4">
-                        <input
-                            type="radio"
-                            value="{{ $id }}"
-                            {{
-                                $attributes->class([
-                                    config('x-form.check.input'),
-                                    config('x-form.invalid') => $errors->has($rule)
-                                ])
-                                ->merge([
-                                    'id' => str($name)->slug() . '-' . $id,
-                                    'name' => $name,
-                                    'wire:model' . $modifier => $model,
-                                    'wire:key' => str($name)->slug() . '-' . $id,
-                                ])
-                            }}
-                            @if($modifier)
-                                wire:dirty.class="{{ config('x-form.border') }}"
-                            @endif
-                        />
-                        <span
-                            class="{{ config('x-form.radio.checked') }}"
-                        ></span>
-                    </div>
+            <label class="relative flex items-center cursor-pointer">
+                <span class="relative flex items-center w-4 h-4">
+                    <input
+                        type="radio"
+                        value="{{ $id }}"
+                        {{
+                            $attributes->class([
+                                config('x-form.check.input'),
+                                config('x-form.invalid') => $errors->has($rule)
+                            ])
+                            ->merge([
+                                'id' => str($name)->slug() . '-' . $id,
+                                'name' => $name,
+                                'wire:model' . $modifier => $model,
+                                'wire:key' => str($name)->slug() . '-' . $id,
+                            ])
+                        }}
+                        @if($modifier)
+                            wire:dirty.class="{{ config('x-form.border') }}"
+                        @endif
+                    />
+                </span>
 
-                    <span class="{{ config('x-form.radio.label') }}">{{ $title }}</span>
-                </label>
-            </div>
+                <span class="{{ config('x-form.check.label') }}">{{ $title }}</span>
+            </label>
         @endforeach
     </div>
 </div>
