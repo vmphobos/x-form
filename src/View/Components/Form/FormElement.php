@@ -9,7 +9,6 @@ use Illuminate\View\Component;
 abstract class FormElement extends Component
 {
     public string $wire = 'wire:model';
-
     public ?string $uuid = null;
     public ?string $name = null;
     public ?string $model = null;

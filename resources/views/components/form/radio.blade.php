@@ -9,8 +9,8 @@
 
     <div
         @class([
-            config('x-form.check.vertical') => $vertical,
-            config('x-form.check.horizontal') => !$vertical
+            config('x-form.check.vertical') => !$horizontal,
+            config('x-form.check.horizontal') => $horizontal
         ])
     >
         @foreach ($list as $title => $id)

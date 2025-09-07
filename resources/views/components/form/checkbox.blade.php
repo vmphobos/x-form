@@ -26,8 +26,8 @@
         @foreach (collect($list)->chunk($itemsPerColumn) as $index => $column)
             <div
                 @class([
-                    config('x-form.check.group.column') => $vertical,
-                    config('x-form.check.group.full') => !$vertical,
+                    config('x-form.check.group.column') => !$horizontal,
+                    config('x-form.check.group.full') => $horizontal,
                 ])
             >
                 @foreach ($column as $title => $id)

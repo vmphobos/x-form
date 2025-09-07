@@ -23,7 +23,7 @@ class Checkbox extends FormElement
         public ?string $tooltipKey = null,
         public ?string $toggle = null,
         public ?bool $required = false,
-        public ?bool $vertical = false,
+        public ?bool $horizontal = false,
         public ?bool $grouped = false,
         public ?bool $dirty = false,
     ) {

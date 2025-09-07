@@ -10,19 +10,18 @@ class Radio extends FormElement
     /**
      * Radio component constructor.
      *
-     * @param array|null $list
-     * @param string|null $uuid
-     * @param string|null $name
-     * @param string|null $label
-     * @param string|null $icon
-     * @param string|null $model
-     * @param string|null $modifier
-     * @param string|null $rule
-     * @param string|null $tooltip
-     * @param string|null $help
-     * @param bool|null $required
-     * @param bool|null $vertical
-     * @param bool|null $dirty
+     * @param  array|null  $list
+     * @param  string|null  $name
+     * @param  string|null  $label
+     * @param  string|null  $icon
+     * @param  string|null  $model
+     * @param  string|null  $modifier
+     * @param  string|null  $rule
+     * @param  string|null  $tooltip
+     * @param  string|null  $help
+     * @param  bool|null  $required
+     * @param  bool|null  $horizontal
+     * @param  bool|null  $dirty
      */
     public function __construct(
         public ?array $list = ['yes' => 1, 'no' => 0],
@@ -35,7 +34,7 @@ class Radio extends FormElement
         public ?string $tooltip = null,
         public ?string $help = null,
         public ?bool $required = false,
-        public ?bool $vertical = true,
+        public ?bool $horizontal = false,
         public ?bool $dirty = false,
     ) {
         // Handle modifier for dirty state
