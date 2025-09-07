@@ -3,7 +3,6 @@
     "description": "Reusable Laravel Form Components for Livewire and standard Blade.",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.2",
     "authors": [
         {
             "name": "Vasilis Milopoulos",
