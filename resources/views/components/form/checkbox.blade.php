@@ -1,15 +1,17 @@
-<div class="row" wire:key="{{ $uuid }}">
+<div class="{{ config('x-form.check.wrapper') }}" wire:key="{{ $uuid }}">
     @if($label)
-        <x-form.label
-            :for="$uuid"
-            :label="$label"
-            :model="$model"
-            :modifier="$modifier"
-            :icon="$icon"
-            :tooltip="$tooltip"
-            :help="$help"
-            :required="$required"
-        />
+        <div class="w-full">
+            <x-form.label
+                :for="$uuid"
+                :label="$label"
+                :model="$model"
+                :modifier="$modifier"
+                :icon="$icon"
+                :tooltip="$tooltip"
+                :help="$help"
+                :required="$required"
+            />
+        </div>
     @endif
 
     @error($rule)
@@ -21,23 +23,15 @@
             {{ __('0 :results found', ['results' => $label]) }}
         </div>
     @else
-        @foreach (collect($list)->chunk($itemsPerColumn) as $column)
+        @foreach (collect($list)->chunk($itemsPerColumn) as $index => $column)
             <div
                 @class([
-                    'truncate col-md-6 col-lg-4 col-xxl-3 mt-2' => $total > 15,
-                    config('x-form.check.vertical') => !$horizontal,
-                    config('x-form.check.horizontal') => $horizontal
-               ])
+                    config('x-form.check.group.column') => $vertical,
+                    config('x-form.check.group.full') => !$vertical,
+                ])
             >
-
                 @foreach ($column as $title => $id)
-                    <div
-                        @class([
-                            config('x-form.check.div'),
-                            config('x-form.check.inline') => $horizontal
-                        ])
-                    >
-
+                    <div class="{{ config('x-form.check.horizontal') }}">
                         <input type="checkbox" value="{{ $id }}"
                                {{
                                    $attributes->class([
@@ -60,7 +54,6 @@
                         <label class="{{ config('x-form.check.label') }}" for="{{ str($name)->slug() . '-' . $id }}">{{ $title }}</label>
                     </div>
                 @endforeach
-
             </div>
         @endforeach
     @endif

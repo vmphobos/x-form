@@ -21,7 +21,7 @@ class Radio extends FormElement
      * @param string|null $tooltip
      * @param string|null $help
      * @param bool|null $required
-     * @param bool|null $horizontal
+     * @param bool|null $vertical
      * @param bool|null $dirty
      */
     public function __construct(
@@ -35,7 +35,7 @@ class Radio extends FormElement
         public ?string $tooltip = null,
         public ?string $help = null,
         public ?bool $required = false,
-        public ?bool $horizontal = true,
+        public ?bool $vertical = true,
         public ?bool $dirty = false,
     ) {
         // Handle modifier for dirty state
