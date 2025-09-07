@@ -15,7 +15,7 @@ return [
     | The class name for the <label> tag to stylize the text.
     | To override a label use <x-slot:label>
      */
-    'label' => 'mb-1 text-sm font-normal tracking-wider text-dark/50 uppercase',
+    'label' => 'mb-1 text-sm font-medium tracking-wider text-gray-500 dark:text-dark-100 capitalize',
     'spinner' => 'spinner-border spinner-border-sm', //label spinner animation
 
     /**
@@ -46,13 +46,13 @@ return [
     | Styling for different types of input elements.
     |
      */
-    'input' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'input' => 'mt-2 p-2.5 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-500 text-gray-700 dark:text-gray-300 text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
-    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start focus:ring-2 focus:ring-primary outline-none w-full',
+    'textarea' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-500 text-gray-700 dark:text-gray-300 text-start focus:ring-2 focus:ring-primary outline-none w-full',
 
     'select' => 'form-select form-control capitalize shadow-none',  // Could be customized further for Tailwind
 
-    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white rounded-md border border-gray-200 text-dark text-start truncate w-full focus:text-primary focus:ring-2 focus:ring-primary hover:cursor-pointer hover:opacity-80',  // Tailwind-focused styling
+    'dropdown' => 'mt-2 p-2 flex items-center gap-2 bg-white dark:bg-dark rounded-md border border-gray-200 dark:border-dark-500 text-dark text-start focus:ring-2 focus:ring-primary outline-none w-full hover:cursor-pointer hover:opacity-80',  // Tailwind-focused styling
 
     'check' => [
         'wrapper' => 'flex flex-row flex-wrap',
@@ -60,7 +60,7 @@ return [
         'input' => 'form-checkbox shadow-none',
         'horizontal' => 'flex flex-row items-center space-x-2 mt-2 pe-4',
         'vertical' => 'flex flex-col gap-2 mt-1',
-        'empty_message' => 'capitalize text-muted', //when no data
+        'empty_message' => 'capitalize text-gray-500 dark:text-gray-300', //when no data
         'group' => [
             'full' => 'w-full flex flex-row flex-wrap space-x-4 my-4',
             'column' => 'w-full sm:w-6/12 md:w-4/12 xl:w-3/12 my-4', //div group column
@@ -107,7 +107,7 @@ return [
     |
      */
     'disabled' => [
-        'class' => 'mt-2 p-2 flex items-center gap-2 bg-gray-50 rounded-md border border-gray-200 text-dark text-start truncate w-full',
+        'class' => 'mt-2 p-2.5 flex items-center gap-2 bg-gray-50 rounded-md border border-gray-200 text-dark text-start truncate w-full',
         'style' => ''
     ],
 ];
