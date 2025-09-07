@@ -35,7 +35,7 @@ class Radio extends FormElement
         public ?string $tooltip = null,
         public ?string $help = null,
         public ?bool $required = false,
-        public ?bool $horizontal = true, // horizontal as variable name
+        public ?bool $horizontal = true,
         public ?bool $dirty = false,
     ) {
         // Handle modifier for dirty state

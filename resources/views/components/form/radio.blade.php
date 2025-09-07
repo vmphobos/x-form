@@ -27,7 +27,7 @@
                             value="{{ $id }}"
                             {{
                                 $attributes->class([
-                                    config('x-form.radio.input'),
+                                    config('x-form.check.input'),
                                     config('x-form.invalid') => $errors->has($rule)
                                 ])
                                 ->merge([
