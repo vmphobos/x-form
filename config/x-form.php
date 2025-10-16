@@ -116,11 +116,12 @@ return [
             'clear-both',
             $base['text_size'],
             $base['text_color'],
+            'capitalize',
             'font-normal',
-            'cursor-pointer',
             'whitespace-nowrap',
             'border-none',
             'rounded-none',
+            'hover:cursor-pointer',
             'hover:opacity-80',
             'hover:bg-black/5',
             'hover:dark:bg-white/10'
