@@ -14,7 +14,7 @@ class Select extends FormElement
         public ?string $uuid = null,
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $title = null,
+        public string $title = '-',
         public ?string $icon = null,
         public ?string $model = null,
         public ?string $rule = null,
@@ -29,6 +29,11 @@ class Select extends FormElement
         public bool $dropdown = true,
     ) {
         parent::__construct();
+
+        // $model must be a livewire property 
+        if (isset($this->$model) && $this->$model) {
+            $title = Arr::get(array_flip($list), $this->$model);
+        }
     }
 
     public function render(): View|Closure|string
