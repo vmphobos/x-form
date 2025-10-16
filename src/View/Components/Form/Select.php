@@ -30,9 +30,9 @@ class Select extends FormElement
     ) {
         parent::__construct();
 
-        // $model must be a livewire property 
+        // $model should be a livewire property 
         if (isset($this->$model) && $this->$model) {
-            $title = Arr::get(array_flip($list), $this->$model);
+            $this->title = Arr::get(array_flip($list), $this->$model);
         }
     }
 
