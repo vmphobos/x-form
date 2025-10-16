@@ -1,3 +1,9 @@
+@php
+    if (isset($this->$model) && $this->$model) {
+        $title = Arr::get(array_flip($list), $this->$model);
+    }
+@endphp
+
 <div
     id="{{ $uuid }}"
     wire:key="{{ $uuid }}"
