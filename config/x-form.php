@@ -40,7 +40,7 @@ $base = [
 
     'choice_vertical' => 'flex flex-col gap-2 mt-1',
 ];
-//todo size-5 change it
+
 return [
     //The site of icons
     'icon_size' => $icon_size,
@@ -59,6 +59,11 @@ return [
     ]),
 
 // Inputs
+    'item' => implode(' ', [
+        $base['text_size'],
+        $base['text_color'],
+    ]),
+
     'input' => implode(' ', [
         $base['flex'],
         'w-full',
@@ -95,8 +100,32 @@ return [
             $base['border'],
             $base['rounded'],
             $base['focus'],
-            'hover:cursor-pointer hover:opacity-80',
+            'hover:cursor-pointer',
+            'hover:opacity-80',
         ]),
+
+        'item' => implode(' ', [
+            'flex',
+            'items-center',
+            'w-full',
+            'text-sm',
+            'text-left',
+            'gap-3',
+            'pl-4',
+            'py-2',
+            'clear-both',
+            $base['text_size'],
+            $base['text_color'],
+            'font-normal',
+            'cursor-pointer',
+            'whitespace-nowrap',
+            'border-none',
+            'rounded-none',
+            'hover:opacity-80',
+            'hover:bg-black/5',
+            'hover:dark:bg-white/10'
+        ]),
+
         'search' => [
             'border' => 'border-dark/30 dark:border-white/30',
         ],
