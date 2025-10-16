@@ -21,7 +21,6 @@ class Radio extends FormElement
      * @param  string|null  $help
      * @param  bool|null  $required
      * @param  bool|null  $horizontal
-     * @param  bool|null  $dirty
      */
     public function __construct(
         public ?array $list = ['yes' => 1, 'no' => 0],
@@ -35,13 +34,7 @@ class Radio extends FormElement
         public ?string $help = null,
         public ?bool $required = false,
         public ?bool $horizontal = false,
-        public ?bool $dirty = false,
     ) {
-        // Handle modifier for dirty state
-        if ($this->dirty) {
-            $this->modifier ??= 'change';
-        }
-
         // Normalize required flag (convert to boolean)
         $this->required = (bool) $required;
 

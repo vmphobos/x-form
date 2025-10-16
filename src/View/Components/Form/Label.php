@@ -22,10 +22,10 @@ class Label extends Component
         public ?string $for = null,
         public ?string $label = null,
         public ?string $model = null,
-        public ?string $modifier = null,
         public ?string $icon = null,
         public ?string $help = null,
         public ?string $tooltip = null,
+        public ?bool $modifier = false,
         public bool $required = false
     ) {
         // Ensure $required is boolean

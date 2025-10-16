@@ -4,15 +4,15 @@
             <div class="{{ config('x-form.label') }}">{{ $label }}</div>
         @endif
         {{-- ACTIONS --}}
-        <div class="flex flex-wrap space-x-2 items-center bg-gray-50 px-3 border border-gray-200 border-b-0 shadow rounded-t-md">
+        <div class="flex flex-wrap space-x-2 items-center bg-black/5 dark:bg-white/10 px-3 border border-black/5 dark:border-white/20 border-b-0 shadow rounded-t-md">
             {{-- HEADINGS --}}
             <div x-data="{ open: false }" @click.outside="open = false">
                 <button
                     type="button"
                     x-ref="button"
                     @click="open = ! open"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                    x-tooltip="{{ __('Change headings (H1,H2,H3...)') }}"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                    title="{{ __('Change headings (H1,H2,H3...)') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +67,8 @@
                     type="button"
                     x-ref="button"
                     @click="open = ! open"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                    x-tooltip="{{ __('Text Size') }}"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                    title="{{ __('Text Size') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -115,8 +115,8 @@
                 type="button"
                 @click="action.toggleBold()"
                 :class="{'bg-gray-300': isBold}"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Bold') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Bold') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -141,8 +141,8 @@
                 type="button"
                 @click="action.toggleItalic()"
                 :class="{'bg-gray-300': isItalic}"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Italic') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Italic') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -168,10 +168,25 @@
                 type="button"
                 @click="action.toggleUnderline()"
                 :class="{'bg-gray-300': isUnderline}"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Underline') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Underline') }}"
             >
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-underline"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 5v5a5 5 0 0 0 10 0v-5" /><path d="M5 19h14" /></svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-underline"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 5v5a5 5 0 0 0 10 0v-5" />
+                    <path d="M5 19h14" />
+                </svg>
             </button>
 
             {{-- STRIKETHROUGH --}}
@@ -179,10 +194,25 @@
                 type="button"
                 @click="action.toggleStrikethrough()"
                 :class="{'bg-gray-300': isStrikethrough}"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Strikethrough') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Strikethrough') }}"
             >
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-strikethrough"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5" /></svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-strikethrough"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M5 12l14 0" />
+                    <path d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5" />
+                </svg>
             </button>
 
             <div>
@@ -190,9 +220,9 @@
                 <button
                     id="{{ $uuid }}_text_picker"
                     type="button" @click="colorPicker.openColorPicker($el, 'text')"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
                     x-ref="text_picker"
-                    x-tooltip="{{ __('Text Color') }}"
+                    title="{{ __('Text Color') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -217,9 +247,9 @@
                 <button
                     id="{{ $uuid }}_bg_picker"
                     type="button" @click="colorPicker.openColorPicker($el, 'background')"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
                     x-ref="bg_picker"
-                    x-tooltip="{{ __('Background Color') }}"
+                    title="{{ __('Background Color') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -248,8 +278,8 @@
                     type="button"
                     x-ref="button"
                     @click="open = ! open"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                    x-tooltip="{{ __('Text Cases') }}"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                    title="{{ __('Text Cases') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -300,9 +330,9 @@
             {{-- FONT TYPESCRIPT --}}
             <button
                 type="button"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
                 @click="action.formatSelection('superscript')"
-                x-tooltip="{{ __('Superscript') }}"
+                title="{{ __('Superscript') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -325,9 +355,9 @@
             {{-- FONT SUPSCRIPT --}}
             <button
                 type="button"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
                 @click="action.formatSelection('subscript')"
-                x-tooltip="{{ __('Subscript') }}"
+                title="{{ __('Subscript') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -350,9 +380,9 @@
             {{-- CODE --}}
             <button
                 type="button"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
                 @click="action.formatSelection('code')"
-                x-tooltip="{{ __('Code Block') }}"
+                title="{{ __('Code Block') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -375,8 +405,10 @@
 
             {{-- TABLE --}}
             <button
-                type="button" @click="action.insertTable()" class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Insert Table') }}"
+                type="button"
+                @click="action.insertTable()"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Insert Table') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -403,8 +435,8 @@
                     type="button"
                     x-ref="button"
                     @click="open = ! open"
-                    class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                    x-tooltip="{{ __('Text Alignment') }}"
+                    class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                    title="{{ __('Text Alignment') }}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -532,8 +564,8 @@
             <button
                 type="button"
                 @click="action.toggleList('ul', 'disc')"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Bullet List') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Bullet List') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -561,8 +593,8 @@
             <button
                 type="button"
                 @click="action.toggleList('ol', 'decimal')"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Numbered List') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Numbered List') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -589,18 +621,37 @@
             <button
                 type="button"
                 @click="action.toggleList('ol', 'lower-alpha')"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Letter List') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Letter List') }}"
             >
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list-letters"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 6h9" /><path d="M11 12h9" /><path d="M11 18h9" /><path d="M4 10v-4.5a1.5 1.5 0 0 1 3 0v4.5" /><path d="M4 8h3" /><path d="M4 20h1.5a1.5 1.5 0 0 0 0 -3h-1.5h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6z" /></svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-list-letters"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M11 6h9" />
+                    <path d="M11 12h9" />
+                    <path d="M11 18h9" />
+                    <path d="M4 10v-4.5a1.5 1.5 0 0 1 3 0v4.5" />
+                    <path d="M4 8h3" />
+                    <path d="M4 20h1.5a1.5 1.5 0 0 0 0 -3h-1.5h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6z" />
+                </svg>
             </button>
 
             {{-- LINK INSERT --}}
             <button
                 type="button"
                 @click.stop="link.insert()"
-                class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm"
-                x-tooltip="{{ __('Insert Link') }}"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                title="{{ __('Insert Link') }}"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -630,10 +681,14 @@
 
             {{-- IMAGE LINK INSERT --}}
             <div
-                x-data="{ showModal: false, url: '', width: '200', height: '200', border: '1', radius: '0', lastSelection: null }"
-                x-tooltip="{{ __('Insert Link Image') }}"
+                x-data="{ showModal: false, src: '', width: '200', height: '200', border: '1', radius: '0', lastSelection: null }"
             >
-                <button type="button" @click="image.storeSelection(); image.showModal = true" class="p-2 hover:bg-gray-200 hover:cursor-pointer rounded-sm">
+                <button
+                    type="button"
+                    @click="image.storeSelection(); image.showModal = true"
+                    class="p-2 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
+                    title="{{ __('Insert Image from URL') }}"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -656,71 +711,132 @@
 
                 <div
                     x-show="image.showModal"
-                    class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50"
+                    class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50 z-1"
                 >
-                    <div class="bg-white p-4 rounded shadow">
-                        <div class="bg-yellow-50 text-yellow-800 rounded-lg text-sm p-4 mb-4">
-                            <strong class="font-semibold">Important Notice:</strong>
-                            <p>Please ensure that any images you use have the appropriate usage rights.
-                                <span class="font-semibold">Do not add links to images</span> that you do not own or are not free to use.
-                                All image URLs must be served via <strong>HTTPS</strong> and must be <strong>copyright-free</strong>.
-                            </p>
-                        </div>
-
+                    <div
+                        class="bg-white/10 backdrop-blur-4xl rounded-2xl shadow max-w-4xl w-full p-8 max-h-screen overflow-y-auto"
+                    >
                         {{-- IMAGE INPUTS --}}
-                        <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
-                            <label for="image_url" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
-                                Image URL:
+                        <div class="w-full my-4" x-data>
+                            <label for="image_url" class="{{ config('x-form.label') }}">
+                                Image URL <span class="text-xs text-red-500">*</span>
                             </label>
 
                             <input
                                 id="image_url"
                                 type="text"
-                                x-model="image.url"
-                                class="w-full p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
-                                placeholder="Enter image URL"
+                                x-model="image.src"
+                                class="{{ config('x-form.input') }}"
+                                placeholder="Enter the url link of the image you would like to insert..."
                             />
+
+                            <!-- Informative hint -->
+                            <p class="text-xs text-gray-500 mt-1">
+                                Please use a <span class="font-medium">secure (https)</span> URL to a
+                                <span class="font-medium">copyright-free</span> image.
+                            </p>
+
+                            <!-- Optional: Warning if input doesn't meet https requirement -->
+                            <template x-if="image.src && !image.src.startsWith('https://')">
+                                <p class="text-xs text-red-600 mt-1">
+                                    ⚠️ URL must start with <span class="font-semibold">https://</span>
+                                </p>
+                            </template>
                         </div>
 
-                        <div class="w-full flex items-center border border-gray-300 rounded-sm mb-2">
-                            <label for="image_alt_text" class="max-w-max bg-gray-200 text-xs font-medium p-2 text-center">
-                                ALT Text:
-                            </label>
-
-                            <input
-                                id="image_alt_text"
-                                type="text"
-                                x-model="image.alt"
-                                class="grow p-2 text-sm h-8 border-l border-gray-300 rounded-sm bg-transparent focus:outline-none"
-                                placeholder="Enter the alt title text for your image"
-                            />
-                        </div>
-
-                        <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-2 mb-2">
-                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
-                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                    Width:
+                        <div x-show="image.src">
+                            <div class="w-full my-4">
+                                <label
+                                    for="image_alt_text"
+                                    class="{{ config('x-form.label') }}"
+                                >
+                                    ALT Text <span class="text-xs text-red-500">*</span>
                                 </label>
 
-                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                    <input
-                                        type="range"
-                                        id="image_width"
-                                        class="w-full"
-                                        x-model="image.width"
-                                        @input="image.changeImageDimensions('w', $el.value)"
-                                        min="0"
-                                        max="1000"
-                                        step="1"
-                                    />
+                                <input
+                                    id="image_alt_text"
+                                    type="text"
+                                    x-model="image.alt"
+                                    class="{{ config('x-form.input') }}"
+                                    placeholder="Enter the alt title text for your image"
+                                />
+                            </div>
 
-                                    <span class="ml-2 text-xs text-gray-500" x-text="image.width"></span>
+                            <div class="mt-4 w-full flex justify-center mb-4">
+                                <img
+                                    x-show="image.src"
+                                    :src="image.src"
+                                    :style="'float: '+image.float+'; width:'+image.width+'px;height:'+image.height+'px;border:'+image.borderWidth+'px solid '+image.borderColor+';border-radius:'+image.borderRadius+'px;'"
+                                    class="shadow"
+                                />
+                            </div>
 
+                            <div
+                                x-data="{ range: 1, showRange: function(x) { this.range = x; }}"
+                                class="w-full flex flex-col gap-2"
+                            >
+                                <div x-show="range == 1" class="flex items-center w-full gap-4">
+                                    <!-- Width Slider and Input -->
+                                    <div class="flex items-center flex-grow gap-2">
+                                        <input
+                                            type="range"
+                                            id="image_width"
+                                            min="0"
+                                            max="1000"
+                                            step="1"
+                                            x-model="image.width"
+                                            @input="image.changeImageDimensions('w', $el.value)"
+                                            class="w-full h-2 accent-blue-500"
+                                        />
+
+                                        <div class="relative">
+                                            <span class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-400 text-xs">W</span>
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                max="1000"
+                                                step="1"
+                                                x-model="image.width"
+                                                @input="image.changeImageDimensions('w', $el.value)"
+                                                class="pl-5 w-16 text-xs border border-gray-300 rounded-md py-1 px-1 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- Height Slider and Input -->
+                                    <div class="flex items-center flex-grow gap-2">
+                                        <input
+                                            type="range"
+                                            id="image_height"
+                                            min="0"
+                                            max="1000"
+                                            step="1"
+                                            x-model="image.height"
+                                            @input="image.changeImageDimensions('h', $el.value)"
+                                            class="w-full h-2 accent-blue-500"
+                                        />
+
+                                        <div class="relative">
+                                            <span class="absolute left-1 top-1/2 -translate-y-1/2 text-gray-400 text-xs">H</span>
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                max="1000"
+                                                step="1"
+                                                x-model="image.height"
+                                                @input="image.changeImageDimensions('h', $el.value)"
+                                                class="pl-5 w-16 text-xs border border-gray-300 rounded-md py-1 px-1 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- Aspect Ratio Toggle Button -->
                                     <button
                                         type="button"
                                         @click="image.changeConstraint()"
-                                        class="ml-2 w-max-w hover:opacity-80 hover:cursor-pointer"
+                                        class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-100 transition"
                                     >
+                                        <!-- Locked Aspect -->
                                         <svg
                                             x-show="image.constraint"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -732,12 +848,13 @@
                                             stroke-width="2"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
-                                            class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square"
+                                            class="stroke-gray-600"
                                         >
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                                         </svg>
 
+                                        <!-- Unlocked Aspect -->
                                         <svg
                                             x-show="!image.constraint"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -749,7 +866,7 @@
                                             stroke-width="2"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
-                                            class="stroke-gray-600 icon icon-tabler icons-tabler-outline icon-tabler-square-off"
+                                            class="stroke-gray-600"
                                         >
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M8 4h10a2 2 0 0 1 2 2v10m-.584 3.412a2 2 0 0 1 -1.416 .588h-12a2 2 0 0 1 -2 -2v-12c0 -.552 .224 -1.052 .586 -1.414" />
@@ -757,107 +874,126 @@
                                         </svg>
                                     </button>
                                 </div>
-                            </div>
 
-                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
-                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                    Height:
-                                </label>
 
-                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
-                                    <input
-                                        type="range"
-                                        id="image_height"
-                                        class="w-full"
-                                        x-model="image.height"
-                                        @input="image.changeImageDimensions('h', $el.value)"
-                                        min="0"
-                                        max="1000"
-                                        step="1"
-                                    />
-
-                                    <span class="ml-2 text-xs text-gray-500" x-text="image.height"></span>
-                                </div>
-                            </div>
-
-                            <div class="w-full flex items-center border border-gray-300 rounded-sm">
-                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                    Border:
-                                </label>
-
-                                <div class="w-full flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                <div
+                                    x-show="range == 2"
+                                    class="w-full flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none"
+                                >
                                     <input
                                         type="range"
                                         id="image_border"
-                                        x-model="image.border"
+                                        x-model="image.borderWidth"
                                         class="w-full"
                                         min="0"
                                         max="100"
                                         step="1"
                                     />
 
-                                    <span class="ml-2 text-xs text-gray-500" x-text="image.border"></span>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        max="1000"
+                                        step="1"
+                                        class="ml-2 w-12 text-xs text-gray-700 border border-gray-300 rounded px-1 py-0.5 focus:outline-none"
+                                        x-model="image.borderWidth"
+                                    />
 
                                     <input
                                         type="color"
                                         @input="image.setBorderColor($el.value)"
-                                        class="rounded-md h-5 w-5"
+                                        class="rounded-md h-6 w-12"
                                     />
                                 </div>
-                            </div>
 
-                            <div class=" w-full flex items-center border border-gray-300 rounded-sm">
-                                <label class="bg-gray-200 text-xs font-medium p-2 max-w-max text-center">
-                                    Radius:
-                                </label>
-
-                                <div class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none">
+                                <div
+                                    x-show="range == 3"
+                                    class="grow flex items-center p-2 text-sm h-8 bg-transparent focus:outline-none"
+                                >
                                     <input
                                         type="range"
                                         id="image_radius"
-                                        x-model="image.radius"
+                                        x-model="image.borderRadius"
                                         class="w-full"
                                         min="0"
                                         max="100"
                                         step="1"
                                     />
 
-                                    <span class="ml-2 text-xs text-gray-500" x-text="image.radius"></span>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        max="1000"
+                                        step="1"
+                                        class="ml-2 w-10 text-xs text-gray-700 border border-gray-300 rounded px-1 py-0.5 focus:outline-none"
+                                        x-model="image.borderRadius"
+                                    />
                                 </div>
+
+                                <div class="w-full flex justify-center gap-2">
+                                    <button
+                                        type="button"
+                                        @click="showRange(1)"
+                                        class="bg-gray-200 border border-gray-300/80 shadow hover:border-gray-300 text-black px-3 py-1 text-sm rounded-full min-w-20 hover:cursor-pointer"
+                                    >
+                                        Resize
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        @click="showRange(2)"
+                                        class="bg-gray-200 border border-gray-300/80 shadow hover:border-gray-300 text-black px-3 py-1 text-sm rounded-full min-w-20 hover:cursor-pointer"
+                                    >
+                                        Border
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        @click="showRange(3)"
+                                        class="bg-gray-200 border border-gray-300/80 shadow hover:border-gray-300 text-black px-3 py-1 text-sm rounded-full min-w-20 hover:cursor-pointer"
+                                    >
+                                        Border Radius
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        @click="showRange(4)"
+                                        class="bg-gray-200 border border-gray-300/80 shadow hover:border-gray-300 text-black px-3 py-1 text-sm rounded-full min-w-20 hover:cursor-pointer"
+                                    >
+                                        Brightness
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="w-full">
+                                <label
+                                    for="image_alignment"
+                                    class="block text-xs font-medium mt-1 mb-1"
+                                >Image placement:</label>
+                                <select
+                                    id="image_alignment"
+                                    x-model="image.float"
+                                    class="rounded-sm border border-gray-300 bg-transparent p-1 w-full text-sm h-7"
+                                >
+                                    <option value="none">None</option>
+                                    <option value="left">Left</option>
+                                    <option value="right">Right</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="w-full">
-                            <label for="image_alignment" class="block text-xs font-medium mt-1 mb-1">Alignment:</label>
-                            <select
-                                id="image_alignment"
-                                x-model="image.alignment"
-                                class="rounded-sm border border-gray-300 bg-transparent p-1 w-full text-sm h-7"
-                            >
-                                <option value="none">None</option>
-                                <option value="left">Left</option>
-                                <option value="right">Right</option>
-                            </select>
-                        </div>
-
-                        <div class="mt-4 w-full">
-                            <img
-                                x-show="image.url"
-                                :src="image.url"
-                                :style="'width:'+image.width+'px;height:'+image.height+'px;border:'+image.border+'px solid black;border-radius:'+image.radius+'px;'"
-                                class="shadow"
-                            >
-                        </div>
 
                         <button
                             type="button"
-                            @click="image.insertImage()" class="mt-2 bg-blue-600 border-2 border-blue-600 text-sm text-white font-medium px-3 py-1 rounded hover:cursor-pointer hover:opacity-80"
+                            @click="image.insertImage()"
+                            class="mt-2 bg-blue-600 border-2 border-blue-600 text-sm text-white font-medium px-3 py-1 rounded hover:cursor-pointer hover:opacity-80"
+                            x-text="image.selectedImage ? 'Save Changes' : 'Insert Image'"
                         >
-                            {{ __('Insert') }}
                         </button>
                         <button
                             type="button"
-                            @click="image.showModal = false" class="mt-2 border-2 border-gray-500 text-sm text-gray-500 font-medium px-3 py-1 rounded hover:cursor-pointer hover:opacity-80"
+                            @click="image.showModal = false"
+                            class="mt-2 border-2 border-gray-500 text-sm text-gray-500 font-medium px-3 py-1 rounded hover:cursor-pointer hover:opacity-80"
                         >
                             {{ __('Cancel') }}
                         </button>
@@ -866,18 +1002,84 @@
             </div>
 
             {{-- DECREASE INDENT --}}
-            <button type="button" @click="action.changeIndent(false)" class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm" x-tooltip="{{ __('Decrease Indent') }}">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-indent-decrease"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6l-7 0" /><path d="M20 12l-9 0" /><path d="M20 18l-7 0" /><path d="M8 8l-4 4l4 4" /></svg>
+            <button
+                type="button"
+                @click="action.changeIndent(false)"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm"
+                title="{{ __('Decrease Indent') }}"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-indent-decrease"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M20 6l-7 0" />
+                    <path d="M20 12l-9 0" />
+                    <path d="M20 18l-7 0" />
+                    <path d="M8 8l-4 4l4 4" />
+                </svg>
             </button>
 
             {{-- INCREASE INDENT --}}
-            <button type="button" @click="action.changeIndent(true)" class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm" x-tooltip="{{ __('Increase Indent') }}">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-indent-increase"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6l-11 0" /><path d="M20 12l-7 0" /><path d="M20 18l-11 0" /><path d="M4 8l4 4l-4 4" /></svg>
+            <button
+                type="button"
+                @click="action.changeIndent(true)"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm"
+                title="{{ __('Increase Indent') }}"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-indent-increase"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M20 6l-11 0" />
+                    <path d="M20 12l-7 0" />
+                    <path d="M20 18l-11 0" />
+                    <path d="M4 8l4 4l-4 4" />
+                </svg>
             </button>
 
             {{-- CLEAR HTML FORMAT --}}
-            <button type="button" @click="clearFormatting" class="p-1 hover:bg-gray-200 hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm" x-tooltip="{{ __('Clear formatting on the selected content') }}">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-clear-formatting"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 15l4 4m0 -4l-4 4" /><path d="M7 6v-1h11v1" /><path d="M7 19l4 0" /><path d="M13 5l-4 14" /></svg>
+            <button
+                type="button"
+                @click="clearFormatting"
+                class="p-1 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm flex items-center gap-1 text-sm"
+                title="{{ __('Clear formatting on the selected content') }}"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-clear-formatting"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M17 15l4 4m0 -4l-4 4" />
+                    <path d="M7 6v-1h11v1" />
+                    <path d="M7 19l4 0" />
+                    <path d="M13 5l-4 14" />
+                </svg>
             </button>
 
         </div>
@@ -885,7 +1087,7 @@
         {{-- EDITOR --}}
         <div
             id="{{ $uuid }}"
-            class="p-4 min-h-60 overflow-auto outline-none bg-white/30 border border-gray-200 rounded-b-md"
+            class="p-4 min-h-60 overflow-auto outline-none bg-black/1 dark:bg-white/10 border dark:text-white border-black/5 dark:border-white/20 rounded-b-md"
             contenteditable="true"
             @input="content = ($event.target.innerHTML === '<br>') ? null : $event.target.innerHTML, $wire.set('{{ $model }}', content, false)"
             x-ref="editor"

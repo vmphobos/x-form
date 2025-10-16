@@ -19,41 +19,42 @@
         ></i>
     @endif
 
-    {{-- Label title --}}
-    <span class="capitalize">{!! $label !!}</span>
-
     {{-- Loading spinner --}}
     @if($modifier && $model)
-        <span
+        <svg
             wire:loading
             wire:target="{{ $model }}"
-            class="{{ config('x-form.spinner') }}"
             aria-hidden="true"
-        ></span>
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="inline size-4 lucide lucide-loader-circle-icon lucide-loader-circle animate-spin"
+        >
+            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+        </svg>
     @endif
+
+    {{-- Label title --}}
+    <span class="capitalize">{!! $label !!}</span>
 </label>
 
 {{-- Tooltip icon --}}
 @if($tooltip && !$help)
-    <i
-        class="ti ti-help-circle-filled"
+    <span
         x-tooltip="{{ str($tooltip)->ucfirst() }}"
         role="tooltip"
         tabindex="0"
-    ></i>
+    >{!! config('x-form.icons.info') !!}</span>
 @endif
 
 {{-- Help popover --}}
 @if($help && !$tooltip)
-    <span x-popover>
-        <i
-            class="ti ti-info-circle-filled cursor-pointer opacity-75 hover:opacity-100"
-            data-trigger
-            tabindex="0"
-            role="button"
-            aria-haspopup="dialog"
-            aria-expanded="false"
-        ></i>
+    <div x-popover class="inline">
+        {!! config('x-form.icons.info') !!}
 
         <div class="popover" data-popover role="dialog" aria-modal="true">
             <div class="row p-2 max-w-[450px]">
@@ -62,5 +63,5 @@
                 </div>
             </div>
         </div>
-    </span>
+    </div>
 @endif

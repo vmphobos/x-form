@@ -1,10 +1,10 @@
-<div class="{{ config('x-form.check.wrapper') }}" wire:key="{{ $uuid }}">
+<div wire:key="{{ $uuid }}" class="column-count-md-2 column-count-lg-3 column-gap-md-2">
     @if($label)
         <x-form.label
             :for="$uuid"
             :label="$label"
             :model="$model"
-            :modifier="$modifier"
+            :modifier="$attributes->has('live') || $attributes->has('blur')"
             :icon="$icon"
             :tooltip="$tooltip"
             :help="$help"
@@ -13,63 +13,57 @@
     @endif
 
     @error($rule)
-        <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+    <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
     @enderror
 
-    <div class="{{ config('x-form.check.wrapper') }}">
+    <div class="flex flex-wrap">
         @foreach($list as $category => $items)
-            <div class="{{ config('x-form.check.group.column') }}">
-                <label
-                    class="{{ config('x-form.check.group.label') }}"
-                    @if($grouped && $toggle) wire:click="{{ "$toggle('$category')" }}" type="button" @endif
+            <div class="w-4/12 mb-5">
+                <button type="button" class="{{ config('x-form.checkbox.group.label') }}"
+                        @if($grouped && $toggle) wire:click="{{ "$toggle('$category')" }}" type="button" x-tooltip="{{ __('Select All') }}" @endif
                 >
                     {{ Str::headline($category) }}
-                </label>
+                </button>
 
-                <div
-                    wire:key="{{ $uuid }}"
-                    class="{{ config('x-form.check.vertical') }}"
-                >
-                    @if($total == 0)
-                        <div class="{{ config('x-form.check.empty') }}">
-                            {{ __('0 :results found', ['results' => $label]) }}
-                        </div>
-                    @else
-                        @foreach ($items as $item)
-                            <div class="{{ config('x-form.check.horizontal') }}">
-                                <input
-                                    type="checkbox" value="{{ $item['id'] }}"
-                                    {{
-                                        $attributes->class([
-                                            config('x-form.check.input'),
-                                            config('x-form.invalid') => $errors->has($rule)
-                                        ])
-                                        ->merge([
-                                            'id' => str($name)->slug() . '-' . $item['id'],
-                                            'name' => $name,
-                                            'wire:model' . $modifier => $model,
-                                            'wire:key' => str($name)->slug() . '-' . $item['id'],
-                                        ])
-                                    }}
-
-                                    @if($modifier)
-                                        wire:dirty.class="{{ config('x-form.border') }}"
-                                    @endif
-                                >
-
-                                <label
-                                    for="{{ str($name)->slug() . '-' . $item['id'] }}"
-                                    class="{{ config('x-form.check.label') }}"
-
-                                    @if($tooltipKey)
-                                        x-tooltip="{{ $item[$tooltipKey] }}"
-                                    @endif
-                                >
-                                    {{ $item['title'] }}
-                                </label>
+                <div class="{{ config('x-form.checkbox.vertical') }}">
+                    <div wire:key="{{ $uuid }}">
+                        @if($total == 0)
+                            <div class="{{ config('x-form.checkbox.empty') }}">
+                                {{ __('0 :results found', ['results' => $label]) }}
                             </div>
-                        @endforeach
-                    @endif
+                        @else
+                            @foreach ($items as $item)
+                                <div class="{{ config('x-form.checkbox.div') }}">
+                                    <input type="checkbox" value="{{ $item['id'] }}"
+                                           {{
+                                               $attributes->class([
+                                                   config('x-form.checkbox.input'),
+                                                   config('x-form.invalid') => $errors->has($rule)
+                                               ])
+                                               ->merge([
+                                                   'id' => str($name)->slug() . '-' . $item['id'],
+                                                   'name' => $name,
+                                                   'wire:model' . $modifier => $model,
+                                                   'wire:key' => str($name)->slug() . '-' . $item['id'],
+                                               ])
+                                           }}
+                                    >
+
+                                    <label
+                                        for="{{ str($name)->slug() . '-' . $item['id'] }}"
+                                        class="{{ config('x-form.checkbox.label') }}"
+
+                                        @if($tooltipKey)
+                                            x-tooltip="{{ $item[$tooltipKey] }}"
+                                        @endif
+                                    >
+                                        {!! config('x-form.checkbox.icon') !!}
+                                    </label>
+                                    <span class="text-gray-800 dark:text-gray-300">{{ $item['title'] }}</span>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
         @endforeach

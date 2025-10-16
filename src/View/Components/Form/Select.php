@@ -24,7 +24,6 @@ class Select extends FormElement
         public ?bool $group = false,
         public ?bool $required = false,
         public ?bool $searchable = false,
-        public ?bool $floating = false,
         public ?bool $inline = false,
         public bool $live = false,
         public bool $dropdown = true,

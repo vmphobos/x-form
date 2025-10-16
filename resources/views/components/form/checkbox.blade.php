@@ -1,60 +1,76 @@
-<div class="{{ config('x-form.check.wrapper') }}" wire:key="{{ $uuid }}">
+<div wire:key="{{ $uuid }}">
     @if($label)
-        <div class="w-full">
-            <x-form.label
-                :for="$uuid"
-                :label="$label"
-                :model="$model"
-                :modifier="$modifier"
-                :icon="$icon"
-                :tooltip="$tooltip"
-                :help="$help"
-                :required="$required"
-            />
-        </div>
+        <x-form.label
+            :for="$uuid"
+            :label="$label"
+            :model="$model"
+            :modifier="$attributes->has('live') || $attributes->has('blur')"
+            :icon="$icon"
+            :tooltip="$tooltip"
+            :help="$help"
+            :required="$required"
+        />
     @endif
 
     @error($rule)
-    <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+        <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
     @enderror
 
     @if($total == 0)
-        <div class="{{ config('x-form.check.empty') }}">
+        <div class="{{ config('x-form.checkbox.empty') }}">
             {{ __('0 :results found', ['results' => $label]) }}
         </div>
     @else
-        @foreach (collect($list)->chunk($itemsPerColumn) as $index => $column)
-            <div
-                @class([
-                    config('x-form.check.group.column') => !$horizontal,
-                    config('x-form.check.group.full') => $horizontal,
-                ])
-            >
-                @foreach ($column as $title => $id)
-                    <div class="{{ config('x-form.check.horizontal') }}">
-                        <input type="checkbox" value="{{ $id }}"
-                               {{
-                                   $attributes->class([
-                                       config('x-form.check.input'),
-                                       config('x-form.invalid') => $errors->has($rule)
-                                   ])
-                                   ->merge([
-                                       'id' => str($name)->slug() . '-' . $id,
-                                       'name' => $name,
-                                       'wire:model' . $modifier => $model,
-                                       'wire:key' => str($name)->slug() . '-' . $id,
-                                   ])
-                               }}
 
-                               @if($modifier)
-                                   wire:dirty.class="{{ config('x-form.border') }}"
-                            @endif
+        <div
+            @class([
+                $grid  => !$horizontal,
+          ])
+
+        >
+            @foreach (collect($list)->chunk($perColumn) as $column)
+                <div
+                    @class([
+                        'w-full',
+                        config('x-form.checkbox.horizontal') => $horizontal,
+                        config('x-form.checkbox.vertical') => !$horizontal,
+                   ])
+                >
+                    @foreach ($column as $title => $id)
+                        <div
+                            @class([
+                                config('x-form.checkbox.div'),
+                            ])
                         >
 
-                        <label class="{{ config('x-form.check.label') }}" for="{{ str($name)->slug() . '-' . $id }}">{{ $title }}</label>
-                    </div>
-                @endforeach
-            </div>
-        @endforeach
+                            <input
+                                type="checkbox" value="{{ $id }}"
+                                {{
+                                    $attributes->class([
+                                        config('x-form.checkbox.input'),
+                                        config('x-form.invalid') => $errors->has($rule)
+                                    ])
+                                    ->merge([
+                                        'id' => str($name)->slug() . '-' . $id,
+                                        'name' => $name,
+                                        'wire:model' . $modifier => $model,
+                                        'wire:key' => str($name)->slug() . '-' . $id,
+                                    ])
+                                }}
+                            >
+
+                            <label class="{{ config('x-form.checkbox.label') }}" for="{{ str($name)->slug() . '-' . $id }}">
+                               {!! config('x-form.checkbox.icon') !!}
+                            </label>
+                            <span class="{{ config('x-form.checkbox.title') }}">
+                        {{ $title }}
+                    </span>
+                        </div>
+                    @endforeach
+
+                </div>
+            @endforeach
+        </div>
+
     @endif
 </div>

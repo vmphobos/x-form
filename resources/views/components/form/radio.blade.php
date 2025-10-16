@@ -9,18 +9,18 @@
 
     <div
         @class([
-            config('x-form.check.vertical') => !$horizontal,
-            config('x-form.check.horizontal') => $horizontal
+            config('x-form.radio.vertical') => !$horizontal,
+            config('x-form.radio.horizontal') => $horizontal
         ])
     >
         @foreach ($list as $title => $id)
-            <label class="{{ config('x-form.check.horizontal') }}">
+            <label class="{{ config('x-form.radio.horizontal') }}">
                 <input
                     type="radio"
                     value="{{ $id }}"
                     {{
                         $attributes->class([
-                            config('x-form.check.input'),
+                            config('x-form.radio.input'),
                             config('x-form.invalid') => $errors->has($rule)
                         ])
                         ->merge([
@@ -30,12 +30,9 @@
                             'wire:key' => str($name)->slug() . '-' . $id,
                         ])
                     }}
-                    @if($modifier)
-                        wire:dirty.class="{{ config('x-form.border') }}"
-                    @endif
                 />
 
-                <span class="{{ config('x-form.check.label') }}">{{ $title }}</span>
+                <span class="{{ config('x-form.radio.label') }}">{{ $title }}</span>
             </label>
         @endforeach
     </div>

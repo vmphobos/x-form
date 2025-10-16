@@ -18,15 +18,8 @@ class Textarea extends FormElement
         public ?string $help = null,
         public int $limit = 0,
         public bool $showCount = true,
-        public bool $floating = false,
         public bool $required = false,
-        public bool $dirty = false,
     ) {
-        // Handle modifier for dirty state
-        if ($this->dirty) {
-            $this->modifier ??= 'blur';
-        }
-
         // Normalize the boolean required flag
         $this->required = (bool) $required;
 

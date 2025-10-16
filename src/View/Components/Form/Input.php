@@ -13,7 +13,6 @@ class Input extends FormElement
         public ?string $placeholder = null,
         public ?string $icon = null,
         public ?string $type = 'text',
-        public ?bool $floating = false,
         public ?bool $required = false,
         public ?string $tooltip = null,
         public ?string $help = null,
@@ -21,7 +20,6 @@ class Input extends FormElement
         public bool $invalid = false,
         public bool $border = true,
         public ?bool $group = false,
-        public ?bool $dirty = false,
         public string|bool $validate = false,
     ) {
         parent::__construct();

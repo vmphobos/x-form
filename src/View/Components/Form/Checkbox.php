@@ -9,7 +9,7 @@ class Checkbox extends FormElement
 {
     public function __construct(
         public ?array $list = ['yes' => 1, 'no' => 0],
-        public ?int $itemsPerColumn = 20,
+        public ?int $perColumn = 20,
         public ?int $total = 0,
         public ?string $uuid = null,
         public ?string $name = null,
@@ -22,16 +22,14 @@ class Checkbox extends FormElement
         public ?string $help = null,
         public ?string $tooltipKey = null,
         public ?string $toggle = null,
-        public ?bool $required = false,
-        public ?bool $horizontal = false,
-        public ?bool $grouped = false,
-        public ?bool $dirty = false,
+        public ?string $grid = null,
+        public bool $required = false,
+        public bool $horizontal = false,
+        public bool $grouped = false,
     ) {
         $this->total = count($this->list);
 
-        if ($this->dirty) {
-            $this->modifier ??= 'change';
-        }
+        $this->grid ??= config('check.grid');
 
         parent::__construct();
     }

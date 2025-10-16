@@ -8,6 +8,7 @@ use Livewire\Livewire;
 use Vmphobos\XForm\Console\Commands\XFormAutoInstaller;
 use Vmphobos\XForm\Livewire\FileManager;
 use Vmphobos\XForm\View\Components\Form\Checkbox;
+use Vmphobos\XForm\View\Components\Form\Date;
 use Vmphobos\XForm\View\Components\Form\Disabled;
 use Vmphobos\XForm\View\Components\Form\Editor;
 use Vmphobos\XForm\View\Components\Form\File;
@@ -59,9 +60,9 @@ class XFormServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/x-form.php', 'x-form');
 
         // Autoload helpers
-        if (file_exists($helpers = __DIR__.'/helpers.php')) {
-            require_once $helpers;
-        }
+//        if (file_exists($helpers = __DIR__.'/helpers.php')) {
+//            require_once $helpers;
+//        }
     }
 
     protected function registerBladeComponents(): void
@@ -69,6 +70,7 @@ class XFormServiceProvider extends ServiceProvider
         Blade::component('form.checkbox-group', Checkbox::class);
         Blade::component('form.checkbox', Checkbox::class);
         Blade::component('form.input', Input::class);
+        Blade::component('form.date', Date::class);
         Blade::component('form.editor', Editor::class);
         Blade::component('form.label', Label::class);
         Blade::component('form.radio', Radio::class);
