@@ -19,7 +19,7 @@
     <div
         class="relative"
         x-data="{
-            title: '{{ $title ?? '-' }}',
+            title: '{{ $title }}',
             search: '',
             opened: false,
             model: '',
@@ -152,25 +152,25 @@
                 </div>
             @endif
 
-            <a
-                href="javascript:void(0);"
-                class="flex items-center w-full text-sm text-left gap-3 pl-4 py-2 clear-both font-normal cursor-pointer whitespace-nowrap border-none rounded-none hover:opacity-80 hover:bg-black/5 hover:dark:bg-white/10 {{ config('x-form.text') }}"
+            <button
+                type="button"
+                class="{{ config('x-form.dropdown.item') }}"
                 @click="selectItem('', '-')"
             >
                 -
-            </a>
+            </button>
 
             @foreach ($list as $list_title => $id)
-                <a
-                    href="javascript:void(0);"
-                    class="flex items-center w-full text-sm text-left gap-3 pl-4 py-2 clear-both font-normal cursor-pointer whitespace-nowrap  border-none rounded-none hover:opacity-80 hover:bg-black/5 hover:dark:bg-white/10 capitalize {{ config('x-form.text') }}"
+                <button
+                    type="button"
+                    class="{{ config('x-form.dropdown.item') }}"
                     :class="{'disabled': model == '{{ $id }}'}"
                     x-cloak
                     x-show="show_item($el)"
                     @click="selectItem('{{ $id }}', @js($list_title))"
                 >
                     {!! $list_title !!}
-                </a>
+                </button>
             @endforeach
         </div>
 
