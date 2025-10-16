@@ -29,11 +29,6 @@ class Select extends FormElement
         public bool $dropdown = true,
     ) {
         parent::__construct();
-
-        // $model should be a livewire property 
-        if (isset($this->$model) && $this->$model) {
-            $this->title = Arr::get(array_flip($list), $this->$model);
-        }
     }
 
     public function render(): View|Closure|string
