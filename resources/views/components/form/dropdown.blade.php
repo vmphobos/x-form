@@ -1,5 +1,5 @@
 @php
-    if (isset($this->$model) && $this->$model) {
+    if (isset($this->$model) && (!is_null($this->$model) || $this->$model !== '')) {
         $title = Arr::get(array_flip($list), $this->$model);
     }
 @endphp
