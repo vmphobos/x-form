@@ -1,9 +1,3 @@
-@php
-    if (isset($this->$model) && (!is_null($this->$model) || $this->$model !== '')) {
-        $title = Arr::get(array_flip($list), $this->$model);
-    }
-@endphp
-
 <div
     id="{{ $uuid }}"
     wire:key="{{ $uuid }}"
@@ -46,7 +40,15 @@
                 }
             }
          }"
+        
+        x-effect="
+            const current = $wire.get('{{ $model }}');
+            const options = {{ Js::from(array_flip($list)) }};
+            if (options[current]) title = options[current];
+        "
+
         @keyup.escape="opened = false"
+
         @if($searchable)
             x-init="$watch('opened', value => {
                 if (value) $nextTick(() => $refs.searchInput?.focus())
