@@ -40,11 +40,12 @@
                 }
             }
          }"
-        
+
         x-effect="
             const current = $wire.get('{{ $model }}');
             const options = {{ Js::from(array_flip($list)) }};
-            if (options[current]) title = options[current];
+            const key = typeof current === 'boolean' ? Number(current) : current;
+            title = options[key] ?? '-';
         "
 
         @keyup.escape="opened = false"
