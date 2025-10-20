@@ -21,12 +21,7 @@
             {{ __('0 :results found', ['results' => $label]) }}
         </div>
     @else
-
-        <div
-            @class([
-                $layout  => !$horizontal,
-          ])
-        >
+        <div class="{{ $layout }}">
             @foreach (collect($list)->chunk($perColumn) as $column)
                 <div
                     @class([
