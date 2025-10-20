@@ -22,14 +22,14 @@ class Checkbox extends FormElement
         public ?string $help = null,
         public ?string $tooltipKey = null,
         public ?string $toggle = null,
-        public ?string $grid = null,
+        public ?string $layout = null,
         public bool $required = false,
         public bool $horizontal = false,
         public bool $grouped = false,
     ) {
         $this->total = count($this->list);
 
-        $this->grid ??= config('check.grid');
+        $this->layout ??= $horizontal ? config('x-form.checkbox.horizontal') : config('x-form.checkbox.vertical');
 
         parent::__construct();
     }
