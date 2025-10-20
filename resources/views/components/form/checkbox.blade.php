@@ -26,7 +26,6 @@
             @class([
                 $grid  => !$horizontal,
           ])
-
         >
             @foreach (collect($list)->chunk($perColumn) as $column)
                 <div
@@ -42,7 +41,6 @@
                                 config('x-form.checkbox.div'),
                             ])
                         >
-
                             <input
                                 type="checkbox" value="{{ $id }}"
                                 {{
@@ -59,15 +57,21 @@
                                 }}
                             >
 
-                            <label class="{{ config('x-form.checkbox.label') }}" for="{{ str($name)->slug() . '-' . $id }}">
+                            <label
+                                for="{{ str($name)->slug() . '-' . $id }}"
+                                class="{{ config('x-form.checkbox.label') }}"
+
+                                @if($tooltipKey)
+                                    x-tooltip="{{ $item[$tooltipKey] }}"
+                                @endif
+                            >
                                {!! config('x-form.checkbox.icon') !!}
                             </label>
                             <span class="{{ config('x-form.checkbox.title') }}">
-                        {{ $title }}
-                    </span>
+                                {{ $title }}
+                            </span>
                         </div>
                     @endforeach
-
                 </div>
             @endforeach
         </div>
