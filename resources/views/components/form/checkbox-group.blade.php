@@ -1,7 +1,6 @@
 <div wire:key="{{ $uuid }}">
     @if($label)
         <x-form.label
-            :for="$uuid"
             :label="$label"
             :model="$model"
             :modifier="$attributes->has('live') || $attributes->has('blur')"
@@ -16,13 +15,7 @@
         <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
     @enderror
 
-    <div
-        @class([
-            'w-full',
-            config('x-form.checkbox.horizontal') => $horizontal,
-            $horizontal ? null : ($layout ?? config('x-form.checkbox.vertical')),
-        ])
-    >
+    <div class="{{ $layout }}">
         @foreach($list as $category => $items)
             <div class="w-full mb-5">
                 <button type="button" class="{{ config('x-form.checkbox.group.label') }}"
