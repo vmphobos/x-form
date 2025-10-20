@@ -1,4 +1,4 @@
-<div wire:key="{{ $uuid }}" class="column-count-md-2 column-count-lg-3 column-gap-md-2">
+<div wire:key="{{ $uuid }}">
     @if($label)
         <x-form.label
             :for="$uuid"
@@ -13,12 +13,18 @@
     @endif
 
     @error($rule)
-    <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+        <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
     @enderror
 
-    <div class="flex flex-wrap">
+    <div
+        @class([
+            'w-full',
+            config('x-form.checkbox.horizontal') => $horizontal,
+            config('x-form.checkbox.vertical') => !$horizontal,
+       ])
+    >
         @foreach($list as $category => $items)
-            <div class="w-4/12 mb-5">
+            <div class="w-full mb-5">
                 <button type="button" class="{{ config('x-form.checkbox.group.label') }}"
                         @if($grouped && $toggle) wire:click="{{ "$toggle('$category')" }}" type="button" x-tooltip="{{ __('Select All') }}" @endif
                 >
@@ -35,18 +41,18 @@
                             @foreach ($items as $item)
                                 <div class="{{ config('x-form.checkbox.div') }}">
                                     <input type="checkbox" value="{{ $item['id'] }}"
-                                           {{
-                                               $attributes->class([
-                                                   config('x-form.checkbox.input'),
-                                                   config('x-form.invalid') => $errors->has($rule)
-                                               ])
-                                               ->merge([
-                                                   'id' => str($name)->slug() . '-' . $item['id'],
-                                                   'name' => $name,
-                                                   'wire:model' . $modifier => $model,
-                                                   'wire:key' => str($name)->slug() . '-' . $item['id'],
-                                               ])
-                                           }}
+                                       {{
+                                           $attributes->class([
+                                               config('x-form.checkbox.input'),
+                                               config('x-form.invalid') => $errors->has($rule)
+                                           ])
+                                           ->merge([
+                                               'id' => str($name)->slug() . '-' . $item['id'],
+                                               'name' => $name,
+                                               'wire:model' . $modifier => $model,
+                                               'wire:key' => str($name)->slug() . '-' . $item['id'],
+                                           ])
+                                       }}
                                     >
 
                                     <label
@@ -59,7 +65,7 @@
                                     >
                                         {!! config('x-form.checkbox.icon') !!}
                                     </label>
-                                    <span class="text-gray-800 dark:text-gray-300">{{ $item['title'] }}</span>
+                                    <span class="{{ config('x-form.checkbox.title') }}">{{ $item['title'] }}</span>
                                 </div>
                             @endforeach
                         @endif
