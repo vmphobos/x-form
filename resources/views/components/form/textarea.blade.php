@@ -2,7 +2,7 @@
     wire:key="{{ $uuid }}"
     x-data="{
         limit: {{ $limit }},
-        model: '{{ $model }}',
+        model: @entangle($model),
         characters() {
             return this.limit > 0 ? this.limit - (this.model?.length ?? 0) : (this.model?.length ?? 0);
         }
