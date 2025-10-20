@@ -20,8 +20,8 @@
         @class([
             'w-full',
             config('x-form.checkbox.horizontal') => $horizontal,
-            config('x-form.checkbox.vertical') => !$horizontal,
-       ])
+            $horizontal ? null : ($layout ?? config('x-form.checkbox.vertical')),
+        ])
     >
         @foreach($list as $category => $items)
             <div class="w-full mb-5">
