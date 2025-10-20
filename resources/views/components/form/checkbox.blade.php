@@ -24,7 +24,7 @@
 
         <div
             @class([
-                $grid  => !$horizontal,
+                $layout  => !$horizontal,
           ])
         >
             @foreach (collect($list)->chunk($perColumn) as $column)
