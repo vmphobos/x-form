@@ -49,6 +49,7 @@ return [
     // Label
     'label' => implode(' ', [
         'block',
+        'capitalize',
         'w-full',
         'mb-1',
         'tracking-wider',
@@ -147,11 +148,10 @@ return [
         'input' => 'peer hidden',
         'horizontal' => $base['choice_horizontal'],
         'vertical' => 'flex flex-col gap-1 mt-1', // override gap-2 if needed
-        'empty_message' => 'capitalize text-gray-500 dark:text-gray-300',
+        'empty_message' => 'capitalize text-zinc-500 dark:text-zinc-300',
         'group' => [
-            'label' => 'dark:text-gray-200 font-bold hover:cursor-pointer relative mb-1',
+            'label' => 'dark:text-zinc-200 font-bold hover:cursor-pointer relative mb-1',
         ],
-        'container' => 'column-count-md-2 column-count-lg-3 column-gap-md-2',
         'title' => "{$base['text_color']} text-xs",
         'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 stroke-black/80 dark:stroke-white/70 opacity-0 peer-checked:opacity-100 transition lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>'
     ],
