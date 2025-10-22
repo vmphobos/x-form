@@ -17,10 +17,7 @@ class Date extends FormElement
         public ?string $tooltip = null,
         public ?string $help = null,
         public ?string $rule = null,
-        public bool $invalid = false,
-        public bool $border = true,
         public ?bool $group = false,
-        public string|bool $validate = false,
     ) {
         parent::__construct();
     }

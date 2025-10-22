@@ -34,7 +34,7 @@ $base = [
         'disabled' => 'min-h-7',
     ],
 
-    'check_radio_input' => 'flex items-center justify-center cursor-pointer rounded-sm border-1 border-dark/20 dark:border-white/20 transition peer-checked:border-dark/70 dark:peer-checked:border-white/30 dark:peer-checked:bg-white/10 peer-checked:[&>svg]:flex peer-checked:[&>svg]:opacity-100',
+    'check_radio_input' => 'flex items-center justify-center cursor-pointer rounded-sm border-1 border-black/20 dark:border-white/20 transition peer-checked:border-black/70 dark:peer-checked:border-white/30 dark:peer-checked:bg-white/10 peer-checked:[&>svg]:flex peer-checked:[&>svg]:opacity-100',
 
     'choice_horizontal' => 'flex flex-row items-center space-x-2 mt-1.5 pe-4',
 
@@ -42,6 +42,10 @@ $base = [
 ];
 
 return [
+    'disk' => 'media',
+
+    'mime_types' => 'jpeg,png,jpg,gif,webp,doc,docx,xls,xlsx,pdf,mp4',
+
     //The site of icons
     'icon_size' => $icon_size,
 
@@ -129,13 +133,16 @@ return [
         ]),
 
         'search' => [
-            'border' => 'border-dark/30 dark:border-white/30',
+            'border' => 'border-black/30 dark:border-white/30',
         ],
     ],
 
     // Radio groups
     'radio' => [
-        'label' => 'text-sm capitalize',
+        'label' => implode(' ', [
+            $base['text_size'],
+            $base['text_color'],
+        ]),
         'input' => 'relative w-4 h-4 ' . $base['check_radio_input'],
         'horizontal' => $base['choice_horizontal'],
         'vertical' => $base['choice_vertical'],
@@ -210,7 +217,7 @@ return [
     ],
 
     // Error messages for input
-    'error' => 'text-danger-500',
+    'error' => 'mt-1 text-sm text-red-500',
 
     // Disabled field styling
     'disabled' => [

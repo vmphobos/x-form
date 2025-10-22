@@ -1,10 +1,10 @@
 <div>
-    <div x-data="editor('{{ $uuid }}', '{{ $model }}', $wire)">
+    <div x-data="editor('{{ $uuid }}', '{{ $model }}', $wire)" x-ref="editor">
         @if($label)
             <div class="{{ config('x-form.label') }}">{{ $label }}</div>
         @endif
         {{-- ACTIONS --}}
-        <div class="flex flex-wrap space-x-2 items-center bg-black/5 dark:bg-white/10 px-3 border border-black/5 dark:border-white/20 border-b-0 shadow rounded-t-md">
+        <div class="flex flex-wrap space-x-2 items-center bg-black/5 dark:bg-white/10 px-3 border border-black/5 dark:border-white/20 border-b-0 shadow rounded-t-md" x-cloak>
             {{-- HEADINGS --}}
             <div x-data="{ open: false }" @click.outside="open = false">
                 <button
@@ -680,9 +680,7 @@
             @endif
 
             {{-- IMAGE LINK INSERT --}}
-            <div
-                x-data="{ showModal: false, src: '', width: '200', height: '200', border: '1', radius: '0', lastSelection: null }"
-            >
+            <div>
                 <button
                     type="button"
                     @click="image.storeSelection(); image.showModal = true"
@@ -712,9 +710,10 @@
                 <div
                     x-show="image.showModal"
                     class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50 z-1"
+                    wire:ignore
                 >
                     <div
-                        class="bg-white/10 backdrop-blur-4xl rounded-2xl shadow max-w-4xl w-full p-8 max-h-screen overflow-y-auto"
+                        class="bg-white/80 dark:bg-black/90 backdrop-blur-4xl rounded-2xl shadow max-w-4xl w-full p-8 max-h-screen overflow-y-auto"
                     >
                         {{-- IMAGE INPUTS --}}
                         <div class="w-full my-4" x-data>
@@ -985,11 +984,12 @@
 
                         <button
                             type="button"
-                            @click="image.insertImage()"
+                            @click="$dispatch('insertImage')"
                             class="mt-2 bg-blue-600 border-2 border-blue-600 text-sm text-white font-medium px-3 py-1 rounded hover:cursor-pointer hover:opacity-80"
                             x-text="image.selectedImage ? 'Save Changes' : 'Insert Image'"
                         >
                         </button>
+
                         <button
                             type="button"
                             @click="image.showModal = false"
@@ -1094,5 +1094,9 @@
         >
             {!! $content !!}
         </div>
+
+        @error($rule)
+            <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
+        @enderror
     </div>
 </div>

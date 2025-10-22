@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 class Checkbox extends FormElement
 {
     public function __construct(
-        public ?array $list = ['yes' => 1, 'no' => 0],
+        public ?array $list = null,
         public ?int $perColumn = 20,
         public ?int $total = 0,
         public ?string $uuid = null,
@@ -27,6 +27,8 @@ class Checkbox extends FormElement
         public bool $horizontal = false,
         public bool $grouped = false,
     ) {
+        $this->list ??= [__('Yes') => 1, __('No') => 0];
+
         $this->total = count($this->list);
 
         $this->layout ??= $horizontal ? config('x-form.checkbox.horizontal') : config('x-form.checkbox.vertical');

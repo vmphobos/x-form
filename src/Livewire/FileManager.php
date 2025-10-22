@@ -13,7 +13,8 @@ class FileManager extends Component
     use WithFileUploads;
 
     #[Locked]
-    public string $disk = 'media';
+    public string $disk;
+
     public string $current_path = '/'; // Current path of the gallery
     public $files = []; // Files in the current folder
     public $selected_image = null; // Selected image for preview
@@ -21,6 +22,11 @@ class FileManager extends Component
     public $mediafile;
 
     public ?string $folder_name = null; // Selected image for preview
+
+    public function mount(): void
+    {
+        $this->disk = config('x-form.disk');
+    }
 
     // Fetch the contents of the current path (gallery or subfolders)
     public function loadGallery(string $path = '/'): void
@@ -69,9 +75,9 @@ class FileManager extends Component
     // Upload the image when the user selects one
     public function updatedMediafile($file): void
     {
-        // Validate the file - ToDo config file
+        // Validate the file
         $this->validate([
-            'mediafile' => 'file|mimes:jpeg,png,jpg,gif,webp,doc,docx,xls,xlsx,pdf,mp4',
+            'mediafile' => 'file|mimes:' . config('x-form.mime_types'),
         ]);
 
         $real_filename = $file->getClientOriginalName();
@@ -163,7 +169,7 @@ class FileManager extends Component
     }
 
     // Go back to the previous folder
-    public function goBack()
+    public function goBack(): void
     {
         $this->current_path = dirname($this->current_path); // Navigate to the parent directory
         $this->loadGallery($this->current_path); // Reload the parent directory contents

@@ -23,7 +23,7 @@ class Radio extends FormElement
      * @param  bool|null  $horizontal
      */
     public function __construct(
-        public ?array $list = ['yes' => 1, 'no' => 0],
+        public ?array $list = null,
         public ?string $name = null,
         public ?string $label = null,
         public ?string $icon = null,
@@ -37,6 +37,8 @@ class Radio extends FormElement
     ) {
         // Normalize required flag (convert to boolean)
         $this->required = (bool) $required;
+
+        $this->list ??= [__('Yes') => 1, __('No') => 0];
 
         parent::__construct();
     }

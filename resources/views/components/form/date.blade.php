@@ -1,11 +1,4 @@
-@props(['model'])
-<div
-    wire:key="{{ md5(json_encode([
-            $model,
-            now()->timestamp, // helps in dynamic forms with reactivity
-        ])) }}"
->
-
+<div wire:key="{{ $uuid }}" >
     {{-- LABEL --}}
     @if ($label)
         <x-form.label
@@ -39,7 +32,13 @@
                 $wire.set('{{ $model }}', this.date, false);
             },
             init() {
-                // Optionally prepopulate from Livewire if needed
+                if ($wire.get('{{ $model }}')) {
+                    const [y, m, d] = $wire.get('{{ $model }}').split('-');
+                    this.year = y;
+                    this.month = m;
+                    this.day = d;
+                    this.display_date = `${y}/${m}/${d}`;
+                }
             },
             selectedDate() {
                 return new Date(`${this.year}-${this.month}-${this.day}`);
@@ -127,15 +126,15 @@
             @click="open = !open"
             @keyup="makeDate($el.value)"
             type="text"
-            id="{{ $model }}_calendar"
+            id="{{ $uuid }}"
             name="{{ $model }}"
             autocomplete="off"
             placeholder="YYYY/MM/DD"
             class="{{ config('x-form.input') }}"
         />
 
-        @error($model)
-        <div class="text-red-500 mt-1">{{ $message }}</div>
+        @error($rule)
+            <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
         @enderror
 
         {{-- DATEPICKER --}}
@@ -144,6 +143,7 @@
             x-anchor="$refs.calendar"
             class="absolute z-10 mt-2 flex flex-col gap-2 w-72 h-76 rounded-lg backdrop-blur-xl dark:text-white shadow-xl"
             @click.away="open = false; console.log(date)"
+            x-cloak
         >
             <div class="flex items-center justify-between font-bold text-lg py-4">
 
@@ -224,7 +224,7 @@
                 <template x-for="ld in Array.from({ length: lastDateOfMonth() }, (_, i) => i + 1)" :key="ld">
                     <button
                         type="button"
-                        class="w-full flex items-center py-1 justify-center rounded-md hover:cursor-pointer hover:bg-zinc-50"
+                        class="w-full flex items-center py-1 justify-center rounded-md hover:cursor-pointer hover:bg-zinc-50 dark:hover:bg-white/5 dark:hover:text-white"
                         :class="{
                         'font-bold bg-zinc-100 text-blue-500 opacity-100': day == ld,
                         'opacity-50': isWeekend(ld)
