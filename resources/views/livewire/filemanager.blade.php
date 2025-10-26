@@ -16,30 +16,16 @@
 >
     <button
         type="button"
-        @click="image.storeSelection(); open = true; $wire.loadGallery()"
+        @click="image.init(); open = true; $wire.loadGallery()"
         class="p-2 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white hover:cursor-pointer rounded-sm"
         x-tooltip="Open Media Manager"
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-folder"
-        >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
     </button>
 
     <!-- Modal for File Manager -->
-    <div class="fixed inset-0 backdrop-blur-sm flex justify-center items-center z-100" x-show="open" x-cloak>
-        <div class="relative bg-white p-4 rounded-lg border border-gray-200 shadow-lg w-3/4 min-h-2/4">
+    <div class="fixed inset-0 backdrop-blur-lg flex justify-center items-center z-100" x-show="open" x-cloak>
+        <div class="relative bg-white/90 dark:bg-black/90 p-4 rounded-lg border border-black/10 shadow-lg w-3/4 min-h-2/4">
             <!-- Loading Spinner -->
             <div
                 wire:loading.class.remove="hidden"
@@ -68,23 +54,7 @@
                             @click="$wire.loadGallery(current_path.split('/').slice(0, -1).join('/'))"
                             class="float-left text-white p-1 rounded bg-black/5 hover:cursor-pointer hover:opacity-80"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="stroke-gray-500 icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"
-                            >
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M5 12l14 0" />
-                                <path d="M5 12l6 6" />
-                                <path d="M5 12l6 -6" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="size-5"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
                         </button>
 
                         <div class="flex items-center gap-2">
@@ -106,48 +76,18 @@
                                 }
                             "
                             x-show="current_path && current_path !== '/'"
-                            class="flex items-center gap-2 text-sm font-medium text-red-500 px-1 rounded border-2 border-red-500 hover:cursor-pointer hover:opacity-80"
+                            class="text-xs bg-red-500 font-medium rounded py-1 flex gap-2 px-1 text-white hover:cursor-pointer hover:opacity-80"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-folder-off"
-                            >
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M8 4h1l3 3h7a2 2 0 0 1 2 2v8m-2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 1.189 -1.829" />
-                                <path d="M3 3l18 18" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="size-4 fill-white"><path d="m871-202-71-71v-367H434l-80-80-80-80h114l80 80h332q33 0 56.5 23.5T880-640v400q0 11-2 20.5t-7 17.5ZM819-28 687-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800l80 80h-80v480h447L28-820l56-56L876-84l-57 56ZM368-480Zm209-17Z"/></svg>
                             Delete Directory
                         </button>
 
                         <button
                             type="button"
                             @click="open = false"
-                            class="text-gray-500 hover:text-gray-700 p-1 rounded-sm bg-black/5 hover:cursor-pointer hover:opacity-80"
+                            class="text-gray-500 dark:text-white hover:text-gray-700 p-1 rounded-sm bg-black/5 dark:bg-white/10 hover:cursor-pointer hover:opacity-80"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-                            >
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M18 6l-12 12" />
-                                <path d="M6 6l12 12" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 -960 960 960" fill="currentColor"><path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/></svg>
                         </button>
                     </div>
                 </div>
@@ -165,7 +105,7 @@
                             type="button"
                             x-ref="button"
                             @click="open = ! open"
-                            class="w-full max-w-30 max-h-30 rounded-md border-3 border-gray-200 flex items-center justify-center align-middle hover:cursor-pointer hover:opacity-80"
+                            class="size-20 rounded-md border-3 border-gray-200 flex items-center justify-center align-middle hover:cursor-pointer hover:opacity-80"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -183,12 +123,12 @@
                         <div
                             x-show="open"
                             x-anchor="$refs.button"
-                            class="bg-white shadow-lg border border-gray-200 rounded-sm flex flex-col"
+                            class="bg-white shadow-lg text-sm text-zinc-500 border border-gray-200 rounded-sm flex flex-col"
                         >
                             <button
                                 type="button"
                                 @click="confirmAndCreateFolder(); open = false"
-                                class="w-full text-sm px-5 py-1 hover:bg-gray-100 hover:cursor-pointer"
+                                class="w-full px-5 py-1 hover:bg-gray-100 hover:cursor-pointer"
                             >
                                 {{ __('Create New Folder') }}
                             </button>
@@ -197,7 +137,7 @@
                                 <button
                                     type="button"
                                     @click="$refs.fileInput.click(); open = false"
-                                    class="capitalize w-full text-sm px-5 py-1 hover:bg-gray-100 hover:cursor-pointer"
+                                    class="capitalize w-full px-5 py-1 hover:bg-gray-100 hover:cursor-pointer"
                                 >
                                     {{ __('upload file') }}
                                 </button>
@@ -250,23 +190,10 @@
                                                 @click="image.insertFile(file.url), open = false"
                                                 class="hover:cursor-pointer hover:opacity-80 flex flex-col items-start space-y-1 hover:cursor-pointer hover:opacity-80 w-full"
                                             >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="w-full h-auto rounded hover"
-                                                >
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-full h-auto" fill="currentColor"><path d="m720-120 160-160-56-56-64 64v-167h-80v167l-64-64-56 56 160 160ZM560 0v-80h320V0H560ZM240-160q-33 0-56.5-23.5T160-240v-560q0-33 23.5-56.5T240-880h280l240 240v121h-80v-81H480v-200H240v560h240v80H240Zm0-80v-560 560Z"/></svg>
 
                                                 <span
-                                                    class="w-full text-sm overflow-hidden text-ellipsis break-words"
+                                                    class="w-full text-sm overflow-hidden text-ellipsis dark:text-white break-words"
                                                     x-text="file.name"
                                                 >
                                                 </span>
@@ -294,7 +221,7 @@
                                                     class="aspect-1/1 object-cover rounded border border-gray-200 hover"
                                                 />
                                                 <span
-                                                    class="w-full text-sm overflow-hidden text-ellipsis break-words"
+                                                    class="w-full text-sm overflow-hidden text-ellipsis dark:text-white break-words"
                                                     x-text="file.name"
                                                 >
                                                 </span>
