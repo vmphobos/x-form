@@ -19,11 +19,7 @@ class Editor extends Component
     {
         $this->rule ??= $this->model;
 
-        $this->uuid ??= md5(json_encode([
-            $this->model,
-            $this->rule,
-            now()->timestamp,
-        ]));
+        $this->uuid ??= str_replace(['.', '[', ']'], '-', $this->model);
     }
 
     public function render(): View|Closure|string
