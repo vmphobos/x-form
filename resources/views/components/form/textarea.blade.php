@@ -1,14 +1,26 @@
 <div
-    wire:key="{{ $uuid }}"
+    @if($model)
+        wire:key="{{ $uuid }}"
+    @endif
+
     x-data="{
         limit: {{ $limit }},
-        model: @entangle($model),
+        get model() {
+            try {
+                return $wire?.get('{{ $model }}') ?? '';
+            } catch (e) {
+                const el = document.getElementById('{{ $uuid }}');
+                return el ? el.value : '';
+            }
+        },
         characters() {
-            return this.limit > 0 ? this.limit - (this.model?.length ?? 0) : (this.model?.length ?? 0);
+            if (this.limit > 0) {
+                return this.limit - (this.model?.length ?? 0);
+            }
+            return this.model?.length ?? 0;
         }
      }"
 >
-
     {{-- Label above textarea (non-floating) --}}
     @if ($label)
         <x-form.label
@@ -33,30 +45,36 @@
                 'id' => $uuid,
                 'name' => $name,
                 'rows' => $rows,
-                'x-model' => 'model',
+                'x-on:input' => 'characters()',
             ])
         }}
 
+        @if($model)
+            wire:model{{ $modifier }}="{{ $model }}"
+            wire:key="{{ $uuid }}"
+            @if($modifier)
+                wire:dirty.class="{{ config('x-form.border') }}"
+            @endif
+        @endif
+
         @if ($tooltip && !$label)
             x-tooltip="{{ $tooltip }}"
-            @endif
-        ></textarea>
+        @endif
+    ></textarea>
 
     @if ($showCount)
-        {{-- Show character counter --}}
+        {{-- Character counter --}}
         <small
             class="mt-1 ms-2 float-end"
             :class="{
-                    'text-black/60 dark:text-white/60': characters() >= 0,
-                    'text-red-500': characters() < 0
-                }"
+                'text-black/60 dark:text-white/60': characters() >= 0,
+                'text-red-500': characters() < 0
+            }"
         >
             <span x-text="characters()"></span> characters
             <span x-show="limit">left</span>
         </small>
     @endif
-
-
 
     @error($rule)
         <div class="{{ config('x-form.error') }}">{!! $message !!}</div>
