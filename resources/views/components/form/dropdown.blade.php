@@ -1,9 +1,6 @@
 <div
     id="{{ $uuid }}"
     wire:key="{{ $uuid }}"
-    @if($required)
-        @click="validateDropdown('{{ $model }}', $wire.get('{{ $model }}') ?? model, '{{ $uuid }}')"
-    @endif
 >
     @if($label)
         <x-form.label
@@ -33,10 +30,6 @@
 
                 if (typeof $wire !== 'undefined') {
                     $wire.set('{{ $model }}', id, {{ $live ? 'true' : 'false' }});
-                }
-
-                if ({{ $required ? 'true' : 'false' }}) {
-                    validateDropdown('{{ $model }}', this.model, '{{ $uuid }}');
                 }
             }
          }"
